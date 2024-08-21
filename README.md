@@ -3,7 +3,7 @@
 entrada em jogos digitais.
 ### Integrantes:
 - Guilherme Reis Queiros de Souza
-- Gustava Miranda de Oliveira
+- Gustavo Miranda de Oliveira
 - Luiz Henrique Silveira
 - João Victor da Silva Paula
 - Vinícius Cristiano Nagatomo de Andrade
