@@ -1,0 +1,26 @@
+# Ignore Unity files:
+Temp/
+Library/
+Logs/
+UserSettings/
+
+*.unitypackage
+*.aab
+*.apk
+*.app
+
+# Ignore Restore files:
+ExportedObj/
+obj/
+
+*.csproj
+*.sln
+
+*.svd
+*.userprefs
+*.pidb
+*.suo
+*.user
+*.unityproj
+*.booproj
+*.tmp
