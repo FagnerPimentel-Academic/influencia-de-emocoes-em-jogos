@@ -1,8 +1,8 @@
 # Ignore Unity files:
-Temp/
-Library/
-Logs/
-UserSettings/
+unity_game/emotional_adventure/Temp/
+unity_game/emotional_adventure/Library/
+unity_game/emotional_adventure/Logs/
+unity_game/emotional_adventure/UserSettings/
 
 *.unitypackage
 *.aab
@@ -10,8 +10,8 @@ UserSettings/
 *.app
 
 # Ignore Restore files:
-ExportedObj/
-obj/
+unity_game/emotional_adventure/ExportedObj/
+unity_game/emotional_adventure/obj/
 
 *.csproj
 *.sln
