@@ -8,6 +8,19 @@ public class EmotionManager : MonoBehaviour
 {
     private TcpListener server;
     private bool isRunning = false;
+    private bool newData = false;
+
+    // Classe para mapear os dados JSON
+    [Serializable]
+    public class EmotionData
+    {
+        public float Happy;
+        public float Sad;
+        public float Angry;
+        public float Scary;
+    }
+
+    EmotionData currentEmotions;
 
     void Start()
     {
@@ -21,7 +34,7 @@ public class EmotionManager : MonoBehaviour
             server = new TcpListener(IPAddress.Parse("127.0.0.1"), 65432);
             server.Start();
             isRunning = true;
-            Debug.Log("Servidor Unity rodando e aguardando conexões...");
+            Debug.Log("Aguardando emoções...");
 
             // Inicia a escuta em uma thread separada para não travar o jogo
             server.BeginAcceptTcpClient(AcceptClient, server);
@@ -44,8 +57,6 @@ public class EmotionManager : MonoBehaviour
         int bytesRead = stream.Read(buffer, 0, buffer.Length);
         string jsonData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-        Debug.Log($"Dados recebidos do Python: {jsonData}");
-
         // Analisa os dados JSON
         ProcessJsonData(jsonData);
 
@@ -58,25 +69,20 @@ public class EmotionManager : MonoBehaviour
 
     void ProcessJsonData(string jsonData)
     {
-        // Aqui você pode analisar o JSON recebido e usar as informações conforme necessário
-        // Exemplo de como você pode trabalhar com o JSON em Unity
-        EmotionData emotions = JsonUtility.FromJson<EmotionData>(jsonData);
-        Debug.Log($"Happy: {emotions.Happy}, Sad: {emotions.Sad}, Angry: {emotions.Angry}, Scary: {emotions.Scary}");
+        currentEmotions = JsonUtility.FromJson<EmotionData>(jsonData);
+        newData = true;
+        Debug.Log($"Happy: {currentEmotions.Happy}, Sad: {currentEmotions.Sad}, Angry: {currentEmotions.Angry}, Scary: {currentEmotions.Scary}");
+    }
+
+    public EmotionData GetEmotions(){
+        var value = newData ? currentEmotions : null;
+        newData = false;
+        return value;
     }
 
     void OnApplicationQuit()
     {
         isRunning = false;
         server.Stop();
-    }
-
-    // Classe para mapear os dados JSON
-    [Serializable]
-    public class EmotionData
-    {
-        public int Happy;
-        public int Sad;
-        public int Angry;
-        public int Scary;
     }
 }
