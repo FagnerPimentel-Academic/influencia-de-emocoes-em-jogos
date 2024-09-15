@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool isLanded = true;
     private int jumps = 0;
 
+    Dictionary <string, Color> emotionPerColor = new Dictionary<string, Color>();
+
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb2d;
 
@@ -19,11 +21,35 @@ public class PlayerController : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
+
+        emotionPerColor.Add("NEUTRAL", Color.white);
+        emotionPerColor.Add("HAPPY", Color.green);
+        emotionPerColor.Add("SAD", Color.blue);
+        emotionPerColor.Add("ANGRY", Color.red);
+        emotionPerColor.Add("SCARY", Color.yellow);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Movement();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isLanded = true;
+            jumps = 0;
+        }
+    }
+
+    public void ApplyEmotion(string emotion){
+        spriteRenderer.color = emotionPerColor[emotion];
+    }
+
+    private void Movement(){
+
         var hDirection = Input.GetAxisRaw("Horizontal");
         var vDirection = Input.GetAxisRaw("Vertical");
         var jumpPressed = Input.GetButtonDown("Jump");
@@ -63,14 +89,6 @@ public class PlayerController : MonoBehaviour
 
             jumps++;
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Ground"))
-        {
-            isLanded = true;
-            jumps = 0;
-        }
     }
 }

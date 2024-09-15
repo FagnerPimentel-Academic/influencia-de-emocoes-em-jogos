@@ -71,7 +71,7 @@ public class EmotionManager : MonoBehaviour
     {
         currentEmotions = JsonUtility.FromJson<EmotionData>(jsonData);
         newData = true;
-        Debug.Log($"Happy: {currentEmotions.Happy}, Sad: {currentEmotions.Sad}, Angry: {currentEmotions.Angry}, Scary: {currentEmotions.Scary}");
+        // Debug.Log($"Happy: {currentEmotions.Happy}, Sad: {currentEmotions.Sad}, Angry: {currentEmotions.Angry}, Scary: {currentEmotions.Scary}");
     }
 
     public EmotionData GetEmotions(){

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+    private GameObject player;
     private EmotionManager emotionManager;
 
     private float bound = 0.7f;
@@ -17,7 +19,13 @@ public class GameManager : MonoBehaviour
     private float timeToEmotion = 0.05f;
 
     EmotionManager.EmotionData emotions;
+    private string lastEmotion = "NEUTRAL";
     private string emotion = "NEUTRAL";
+
+    void Awake(){
+        instance = this;
+        player = GameObject.Find("Player");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +37,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateEmotions();
-        Debug.Log(happyAcc + " " + emotion);
+
+        
     }
 
     void UpdateEmotions()
@@ -107,6 +116,13 @@ public class GameManager : MonoBehaviour
         if (scaryAcc > timeToEmotion)
         {
             emotion = "SCARY";
+        }
+
+        if (emotion != lastEmotion)
+        {
+            Debug.Log(emotion);
+            lastEmotion = emotion;
+            player.GetComponent<PlayerController>().ApplyEmotion(emotion);
         }
     }
 }
