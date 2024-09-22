@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public int maxJumps;
 
-    private bool isLanded = true;
+    private bool isGrounded = true;
     private int jumps = 0;
 
     Dictionary <string, Color> emotionPerColor = new Dictionary<string, Color>();
@@ -39,8 +39,16 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            isLanded = true;
+            isGrounded = true;
             jumps = 0;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isGrounded = false;
         }
     }
 
@@ -76,9 +84,9 @@ public class PlayerController : MonoBehaviour
 
         if (jumpPressed)
         {
-            if (isLanded)
+            if (isGrounded)
             {
-                isLanded = false;
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
                 rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
             else if (jumps < maxJumps)
@@ -91,4 +99,9 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    public bool GetIsGrounded(){
+        return isGrounded;
+    }
+
 }
