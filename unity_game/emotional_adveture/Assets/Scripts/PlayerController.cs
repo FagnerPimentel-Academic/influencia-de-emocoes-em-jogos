@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
-    public int maxJumps;
+    public int maxJumps = 2;
 
     private bool isGrounded = true;
-    private int jumps = 0;
+    public int jumps = 0;
+    public bool canJump = true;
+    public float jumpCooldownTime = 1;
+    public float lastTimeOnGround;
 
     Dictionary <string, Color> emotionPerColor = new Dictionary<string, Color>();
 
@@ -21,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
+        lastTimeOnGround = Time.time;
 
         emotionPerColor.Add("NEUTRAL", Color.white);
         emotionPerColor.Add("HAPPY", Color.green);
@@ -40,7 +45,7 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
-            jumps = 0;
+            lastTimeOnGround = Time.time;
         }
     }
 
@@ -57,6 +62,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Movement(){
+        if(rb2d.velocity.y != 0 || jumps >= maxJumps)
+            canJump = false;
+        if(Time.time - lastTimeOnGround >= jumpCooldownTime && jumps < maxJumps){
+            canJump = true;
+            jumps=0;
+        }
+        
 
         var hDirection = Input.GetAxisRaw("Horizontal");
         var vDirection = Input.GetAxisRaw("Vertical");
@@ -84,12 +96,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumpPressed)
         {
-            if (isGrounded)
-            {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
-                rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            }
-            else if (jumps < maxJumps)
+            if (canJump)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
                 rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);

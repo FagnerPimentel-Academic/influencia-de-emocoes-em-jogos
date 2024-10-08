@@ -44,3 +44,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Fundo Distante
+    uniqueID: 3147434345
+    locked: 0
+  - name: "Fundo M\xE9dio"
+    uniqueID: 919219565
+    locked: 0
+  - name: Fundo Proximo
+    uniqueID: 2113553123
+    locked: 0
+  - name: Ground
+    uniqueID: 1144828177
+    locked: 0
+  - name: Foreground
+    uniqueID: 782121669
+    locked: 0
