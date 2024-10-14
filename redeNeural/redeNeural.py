@@ -8,12 +8,12 @@ from funcoesGerais import criarModelo, retornarArquivosDiretorio, reprocessarEeg
 import os
 
 def realizarDeteccao(opcaoEmocaoEscolhida):
-    modeloTreinadoCaminho = retornarArquivosDiretorio(pasta='treinamentos', extensoes=['.keras'])
+    modeloTreinadoCaminho = retornarArquivosDiretorio(pasta='treinamentos', extensoes=['modeloMLP.keras'])
     modeloCarregado = load_model(modeloTreinadoCaminho[0])
     mapeamentoEmocoes = retornarMapeamentoEmocoes()
     emocaoEscolhida = [emocao for emocao, valor in mapeamentoEmocoes.items() if valor == opcaoEmocaoEscolhida][0]
 
-    eegFiltradosJSON = retornarArquivosDiretorio(pasta='eegFiltrados', extensoes=['.json'])
+    eegFiltradosJSON = retornarArquivosDiretorio(pasta='eegFiltrados', extensoes=['filtrados.json'])
 
     if len(eegFiltradosJSON) != 34:
         eegFiltradosJSON = reprocessarEegFiltrados()
@@ -21,7 +21,7 @@ def realizarDeteccao(opcaoEmocaoEscolhida):
     if len(eegFiltradosJSON) == 34:
         amostra = retornarAmostras(retornarAmostraEspecifica=emocaoEscolhida)
         amostra = np.expand_dims(amostra, axis=0)
-        predicoes = modeloCarregado.predict(np.array(amostra, dtype=np.float32))
+        predicoes = modeloCarregado.predict(np.array(amostra, dtype=np.float64))
         resultadoDeteccao = np.argmax(predicoes, axis=-1)
         emocaoDetectada = [emocao for emocao, valor in mapeamentoEmocoes.items() if valor == resultadoDeteccao[0]][0]
         print("Emoção: %s" % emocaoDetectada)
@@ -29,7 +29,7 @@ def realizarDeteccao(opcaoEmocaoEscolhida):
         print("Erro ao tentar encontrar arquivos filtrados .json")
     return
 
-def realizarTreinamento(formaEntrada, melhorRedeNeural=False, dadosManuais={}, nomeModelo='modeloTreinadoEmocoes.keras'):
+def realizarTreinamento(formaEntrada, melhorRedeNeural=False, dadosManuais={}, nomeModelo='modeloMLP.keras'):
     if melhorRedeNeural:
         resultadoMelhorRede = retornarArquivosDiretorio(pasta='treinamentos', extensoes=['.xlsx'])
         df = pd.read_excel(resultadoMelhorRede[0])
@@ -40,13 +40,13 @@ def realizarTreinamento(formaEntrada, melhorRedeNeural=False, dadosManuais={}, n
         camadas = dadosManuais['camadas']
         epocas = dadosManuais['epocas']
 
-    eegFiltradosJSON = retornarArquivosDiretorio(pasta='eegFiltrados', extensoes=['.json'])
+    eegFiltradosJSON = retornarArquivosDiretorio(pasta='eegFiltrados', extensoes=['filtrados.json'])
 
     if len(eegFiltradosJSON) != 34:
         eegFiltradosJSON = reprocessarEegFiltrados()
 
     if len(eegFiltradosJSON) == 34:
-        amostrasTreinamento, emocoesTreinamento, amostrasTestes, emocoesTestes = retornarAmostras()
+        amostrasTreinamento, emocoesTreinamento, amostrasTestes, emocoesTestes = retornarAmostras(calibracaoPorSujeito=True)
     else:
         print("Erro ao tentar encontrar arquivos filtrados .json")
         return

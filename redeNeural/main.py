@@ -191,7 +191,6 @@ def main():
                         realizarDeteccao(int(opcaoDetectarEmocao)-1)
                         time.sleep(2)
                         limparTerminal()
-                        break
                     except Exception as e:
                         print("Erro ao realizar detecção de emoção %s" % e.args[0])
                         time.sleep(4)

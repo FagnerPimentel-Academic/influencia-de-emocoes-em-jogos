@@ -1,74 +1,12 @@
 from tensorflow.keras.layers import Dense, Flatten, Input
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.models import Sequential
-from funcoesGerais import retornarHeader, retornarArquivosDiretorio, retornarNomeArquivo, criarModelo, treinarModelo, reprocessarEegFiltrados, retornarAmostras
+from funcoesGerais import retornarArquivosDiretorio, criarModelo, treinarModelo, reprocessarEegFiltrados, \
+    retornarAmostras, gerarEstruturaCamadas, retornarMapeamentoEmocoes
 import pandas as pd
-import numpy as np
-import json
-import os
-
-def dividirAmostras(lista, tamanhoAmostra):
-    return [lista[i:i + tamanhoAmostra] for i in range(0, len(lista), tamanhoAmostra) if
-            len(lista[i:i + tamanhoAmostra]) == tamanhoAmostra]
-
-def processarEmocoes(arquivo):
-    dados = pd.read_csv(arquivo)
-    dadosPorEmocao = {}
-
-    emocaoAtual = None
-    grupoAtual = []
-    # ignorarLinhas = ['InitialInstructions', 'prebase_instruct', 'prebase', 'exit', 'FeelingItInstructionsButton',
-    #                  'InstructionsForEnding', 'ImaginationSuggestions', 'enter', 'postbase_instruct', 'ExitThankYou',
-    #                  'postbase', 'FeelingItInstructionsNoButton']
-
-    tempoAnterior = None
-    intervaloMinimo = 1.0
-
-    for _, linha in dados.iterrows():
-        tempoAtual = linha['tempo']
-        if tempoAnterior is None or (tempoAtual - tempoAnterior) >= intervaloMinimo:
-            emocao = linha['emotion']
-            # if emocao in ignorarLinhas:
-            #     continue
-            if emocao in []:
-                continue
-            else:
-                caracteristicas = linha.drop(labels=['tempo', 'emotion']).tolist()
-
-                if emocao == emocaoAtual:
-                    grupoAtual.append(caracteristicas)
-                else:
-                    if emocaoAtual is not None:
-                        if emocaoAtual not in dadosPorEmocao:
-                            dadosPorEmocao[emocaoAtual] = []
-                        dadosPorEmocao[emocaoAtual].append(grupoAtual)
-
-                    emocaoAtual = emocao
-                    grupoAtual = [caracteristicas]
-            tempoAnterior = tempoAtual
-
-    if emocaoAtual is not None:
-        if emocaoAtual not in dadosPorEmocao:
-            dadosPorEmocao[emocaoAtual] = []
-        dadosPorEmocao[emocaoAtual].append(grupoAtual)
-
-    for emocao in dadosPorEmocao.keys():
-        amostras = dadosPorEmocao[emocao][0]
-        amostras = dividirAmostras(amostras, 40)
-        dadosPorEmocao[emocao] = amostras
-
-    nomeArquivo = retornarNomeArquivo(arquivo)
-    diretorio = os.path.dirname(arquivo)
-    caminhoArquivoJson = os.path.join(diretorio, nomeArquivo + '.json')
-    if not os.path.exists(caminhoArquivoJson):
-        with open(caminhoArquivoJson, 'w', encoding='utf-8') as arquivoJson:
-            json.dump(dadosPorEmocao, arquivoJson, ensure_ascii=False, indent=4)
-
-    return dadosPorEmocao
-
 
 def encontrarMelhorRedeNeural(formaEntrada):
-    eegFiltradosJSON = retornarArquivosDiretorio(pasta='eegFiltrados', extensoes=['.json'])
+    eegFiltradosJSON = retornarArquivosDiretorio(pasta='eegFiltrados', extensoes=['filtrados.json'])
 
     if len(eegFiltradosJSON) != 34:
         eegFiltradosJSON = reprocessarEegFiltrados()
@@ -76,6 +14,8 @@ def encontrarMelhorRedeNeural(formaEntrada):
     if len(eegFiltradosJSON) == 34:
         arquiteturas = gerarEstruturaCamadas()
         valoresEpocas, resultados = [1000, 5000, 10000], []
+        modelosTreinamento = ['modeloMLP', 'modelo', 'modelo']
+        mapeamentoEmocoes = retornarMapeamentoEmocoes()
 
         amostrasTreinamento, emocoesTreinamento, amostrasTestes, emocoesTestes = retornarAmostras()
 
