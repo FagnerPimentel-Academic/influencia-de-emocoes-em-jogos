@@ -1,7 +1,7 @@
 from projecaoEletrodos3D import multiplasProjecoesPorPagina, umaProjecaoPorPagina
 from melhorRedeNeural import encontrarMelhorRedeNeural
 from redeNeural import realizarTreinamento, realizarDeteccao
-from funcoesGerais import retornarArquivosDiretorio
+from funcoesGerais import retornarArquivosDiretorio, reprocessarEegFiltrados
 import pandas as pd
 import numpy as np
 import platform
@@ -12,7 +12,7 @@ import os
 
 RED = "\033[91m"
 RESET = "\033[0m"
-formaEntrada = (40, 17)
+formaEntrada = (72, 17)
 
 arquivosPosicaoEletrodos = retornarArquivosDiretorio(pasta="posicaoEletrodos")
 eegSujeitos = retornarArquivosDiretorio(pasta="eegSujeitos")
@@ -131,44 +131,56 @@ def main():
                 print("2. Realizar treinamento inserindo parâmetros manualmente.")
                 print("================================")
                 opcaoRealizarTreinamento = input("Escolha uma opção: ")
-                if opcaoRealizarTreinamento == '1':
-                    print("Iniciando treinamento...")
-                    try:
-                        realizarTreinamento(formaEntrada, melhorRedeNeural=True)
-                        print("Modelo salvo na pasta de 'treinamentos'.")
-                        time.sleep(4)
-                        break
-                    except Exception as e:
-                        print("Erro ao tentar treinar modelo. %s" % e.args[0])
-                        time.sleep(4)
-                        limparTerminal()
-                        break
-                elif opcaoRealizarTreinamento == '2':
-                    print("\n======== Realizar treinamento ========")
-                    print("Necessário fornecer as informações abaixo nessa ordem:")
-                    print("1. Quantidade de épocas para o treinamento. (Informação numérica)*")
-                    print("2. Quantidade de neurônios na 1º camada.    (Informação numérica)*")
-                    print("3. Quantidade de neurônios na 2º camada.    (Informação numérica)*")
-                    print("4. Quantidade de neurônios na 3º camada.    (Informação numérica)*")
-                    print("================================")
-                    epocas = input("Insira a quantidade de eṕocas: ")
-                    primeiraCamada = input("Insira a quantiade de neurônios (1º camada): ")
-                    segundaCamada = input("Insira a quantiade de neurônios (2º camada): ")
-                    terceiraCamada = input("Insira a quantiade de neurônios (3º camada): ")
-                    try:
-                        realizarTreinamento(formaEntrada, dadosManuais={'epocas': epocas,
-                                                          'neuronios': [primeiraCamada, segundaCamada, terceiraCamada]},
-                                            nomeModelo='modeloManualTreinado.keras')
-                        print("Modelo salvo na pasta de 'treinamentos'.")
-                        time.sleep(4)
-                        break
-                    except Exception as e:
-                        print("Erro ao tentar treinar modelo manualmente. %s" % e.args[0])
-                        time.sleep(4)
-                        limparTerminal()
-                        break
-                else:
+                if opcaoRealizarTreinamento not in ['1', '2']:
                     print("Opção inválida, tente novamente.")
+                else:
+                    while True:
+                        limparTerminal()
+                        print("\n======== Tipo de treinamento ========")
+                        print("1. Por sujeito (80% da onda treinar / 20% onda teste).")
+                        print("2. Onda fragmentada (Onda separada, 1 tick para treinamento, 1 tick para testes).")
+                        print("================================")
+                        opcaoTipoTreinamento = input("Escolha uma opção: ")
+                        tipoTreinamento = 'porSujeito' if opcaoTipoTreinamento == '1' else 'ondaFragmentada' if opcaoTipoTreinamento == '2' else 'opcaoErrada'
+                        if opcaoTipoTreinamento not in ['1', '2']:
+                            print("Opção inválida, tente novamente.")
+                        elif opcaoRealizarTreinamento == '1':
+                            print("Iniciando treinamento...")
+                            try:
+                                realizarTreinamento(formaEntrada, melhorRedeNeural=True, tipoTreinamento=tipoTreinamento)
+                                print("Modelo salvo na pasta de 'treinamentos'.")
+                                time.sleep(4)
+                                break
+                            except Exception as e:
+                                print("Erro ao tentar treinar modelo. %s" % e.args[0])
+                                time.sleep(4)
+                                limparTerminal()
+                                break
+                        elif opcaoRealizarTreinamento == '2':
+                            print("\n======== Realizar treinamento ========")
+                            print("Necessário fornecer as informações abaixo nessa ordem:")
+                            print("1. Quantidade de épocas para o treinamento. (Informação numérica)*")
+                            print("2. Quantidade de neurônios na 1º camada.    (Informação numérica)*")
+                            print("3. Quantidade de neurônios na 2º camada.    (Informação numérica)*")
+                            print("4. Quantidade de neurônios na 3º camada.    (Informação numérica)*")
+                            print("================================")
+                            epocas = input("Insira a quantidade de eṕocas: ")
+                            primeiraCamada = input("Insira a quantiade de neurônios (1º camada): ")
+                            segundaCamada = input("Insira a quantiade de neurônios (2º camada): ")
+                            terceiraCamada = input("Insira a quantiade de neurônios (3º camada): ")
+                            try:
+                                realizarTreinamento(formaEntrada, dadosManuais={'epocas': epocas,
+                                                                  'neuronios': [primeiraCamada, segundaCamada, terceiraCamada]},
+                                                    nomeModelo='modeloManualTreinado.keras', tipoTreinamento=tipoTreinamento)
+                                print("Modelo salvo na pasta de 'treinamentos'.")
+                                time.sleep(4)
+                                break
+                            except Exception as e:
+                                print("Erro ao tentar treinar modelo manualmente. %s" % e.args[0])
+                                time.sleep(4)
+                                limparTerminal()
+                                break
+                    break
         elif opcaoMenu == '4':
             while True:
                 limparTerminal()

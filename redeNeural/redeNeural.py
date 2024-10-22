@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 import numpy as np
 import pandas as pd
 import ast
-from funcoesGerais import criarModelo, retornarArquivosDiretorio, reprocessarEegFiltrados, retornarAmostras, retornarDiretorio, retornarMapeamentoEmocoes, treinarModelo
+from funcoesGerais import criarModeloMLP, criarModeloCNNLSTM, criarModeloLSTM, retornarArquivosDiretorio, reprocessarEegFiltrados, retornarAmostras, retornarDiretorio, retornarMapeamentoEmocoes, treinarModelo
 import os
 
 def realizarDeteccao(opcaoEmocaoEscolhida):
@@ -19,7 +19,7 @@ def realizarDeteccao(opcaoEmocaoEscolhida):
         eegFiltradosJSON = reprocessarEegFiltrados()
 
     if len(eegFiltradosJSON) == 34:
-        amostra = retornarAmostras(retornarAmostraEspecifica=emocaoEscolhida)
+        amostra = retornarAmostras(tipoAmostra='específica', emocao=emocaoEscolhida)
         amostra = np.expand_dims(amostra, axis=0)
         predicoes = modeloCarregado.predict(np.array(amostra, dtype=np.float64))
         resultadoDeteccao = np.argmax(predicoes, axis=-1)
@@ -29,7 +29,7 @@ def realizarDeteccao(opcaoEmocaoEscolhida):
         print("Erro ao tentar encontrar arquivos filtrados .json")
     return
 
-def realizarTreinamento(formaEntrada, melhorRedeNeural=False, dadosManuais={}, nomeModelo='modeloMLP.keras'):
+def realizarTreinamento(formaEntrada, melhorRedeNeural=False, dadosManuais={}, tipoTreinamento='porSujeito', nomeModelo='modeloMLP.keras'):
     if melhorRedeNeural:
         resultadoMelhorRede = retornarArquivosDiretorio(pasta='treinamentos', extensoes=['.xlsx'])
         df = pd.read_excel(resultadoMelhorRede[0])
@@ -37,8 +37,8 @@ def realizarTreinamento(formaEntrada, melhorRedeNeural=False, dadosManuais={}, n
         camadas = ast.literal_eval(linhaMelhorResultado.iloc[0, 0])
         epocas = int(linhaMelhorResultado.iloc[0, 1])
     else:
-        camadas = dadosManuais['camadas']
-        epocas = dadosManuais['epocas']
+        camadas = [int(neuronio) for neuronio in dadosManuais['neuronios']]
+        epocas = int(dadosManuais['epocas'])
 
     eegFiltradosJSON = retornarArquivosDiretorio(pasta='eegFiltrados', extensoes=['filtrados.json'])
 
@@ -46,16 +46,24 @@ def realizarTreinamento(formaEntrada, melhorRedeNeural=False, dadosManuais={}, n
         eegFiltradosJSON = reprocessarEegFiltrados()
 
     if len(eegFiltradosJSON) == 34:
-        amostrasTreinamento, emocoesTreinamento, amostrasTestes, emocoesTestes = retornarAmostras(calibracaoPorSujeito=True)
+        amostrasTreinamento, emocoesTreinamento, amostrasTestes, emocoesTestes = retornarAmostras(formaEntrada = formaEntrada, tipoAmostra=tipoTreinamento)
     else:
         print("Erro ao tentar encontrar arquivos filtrados .json")
         return
 
     mapeamentoEmocoes = retornarMapeamentoEmocoes()
 
-    modelo = criarModelo(camadas, formaEntrada, mapeamentoEmocoes)
+    modeloMLP = criarModeloMLP(camadas=camadas, formaEntrada=formaEntrada, mapeamentoEmocoes=mapeamentoEmocoes)
+    modeloCNNLSTM = criarModeloCNNLSTM(formaEntrada=formaEntrada, mapeamentoEmocoes=mapeamentoEmocoes)
+    modeloLSTM = criarModeloLSTM(formaEntrada=formaEntrada, mapeamentoEmocoes=mapeamentoEmocoes)
 
-    _, valorPerda, valorAcuracia = treinarModelo(modelo, epocas, amostrasTreinamento, emocoesTreinamento, amostrasTestes, emocoesTestes)
+    # _, valorPerda, valorAcuracia = treinarModelo(modeloMLP, epocas, amostrasTreinamento, emocoesTreinamento, amostrasTestes, emocoesTestes)
+
+    _, valorPerda, valorAcuracia = treinarModelo(modeloCNNLSTM, epocas, amostrasTreinamento, emocoesTreinamento,
+                                                 amostrasTestes, emocoesTestes)
+
+    _, valorPerda, valorAcuracia = treinarModelo(modeloLSTM, epocas, amostrasTreinamento, emocoesTreinamento,
+                                                 amostrasTestes, emocoesTestes)
 
     diretorioTreinamentos = retornarDiretorio(pasta='treinamentos')
 

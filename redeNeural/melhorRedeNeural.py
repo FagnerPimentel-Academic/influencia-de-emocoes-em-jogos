@@ -1,7 +1,7 @@
 from tensorflow.keras.layers import Dense, Flatten, Input
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.models import Sequential
-from funcoesGerais import retornarArquivosDiretorio, criarModelo, treinarModelo, reprocessarEegFiltrados, \
+from funcoesGerais import retornarArquivosDiretorio, criarModeloMLP, treinarModelo, reprocessarEegFiltrados, \
     retornarAmostras, gerarEstruturaCamadas, retornarMapeamentoEmocoes
 import pandas as pd
 
@@ -23,7 +23,7 @@ def encontrarMelhorRedeNeural(formaEntrada):
         for arquitetura in arquiteturas:
             for epocas in valoresEpocas:
                 print("Testando arquitetura %s com %s épocas..." % (str(arquitetura), str(epocas)))
-                modelo = criarModelo(arquitetura, formaEntrada, mapeamentoEmocoes)
+                modelo = criarModeloMLP(arquitetura, formaEntrada, mapeamentoEmocoes)
                 tempoInicioTreinamento = time.time()
 
                 _, valorPerda, valorAcuracia = treinarModelo(modelo, epocas, amostrasTreinamento,
