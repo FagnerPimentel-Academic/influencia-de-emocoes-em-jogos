@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public int maxJumps = 2;
 
     private bool isGrounded = true;
+    private AnimationController animationController;
+
     public int jumps = 0;
     public bool canJump = true;
     public float jumpCooldownTime = 1;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         lastTimeOnGround = Time.time;
+        animationController = GetComponent<AnimationController>();
 
         emotionPerColor.Add("NEUTRAL", Color.white);
         emotionPerColor.Add("HAPPY", Color.green);
@@ -76,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
         if (hDirection == 1f)
         {
+            animationController.PlayAnimation("player_walk");
             spriteRenderer.flipX = false;
             transform.position = new Vector2(
                 transform.position.x + speed * Time.deltaTime,
@@ -84,11 +88,14 @@ public class PlayerController : MonoBehaviour
         }
         else if (hDirection == -1f)
         {
+            animationController.PlayAnimation("player_walk");
             spriteRenderer.flipX = true;
             transform.position = new Vector2(
                 transform.position.x - speed * Time.deltaTime,
                 transform.position.y
             );
+        }else{
+            animationController.PlayAnimation("player_idle");
         }
 
         if (vDirection == 1f) { }
