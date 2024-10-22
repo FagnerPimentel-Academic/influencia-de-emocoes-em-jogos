@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DogFollower : MonoBehaviour
+public class DogController : MonoBehaviour
 {
     private GameObject player; // Referência ao jogador
     public float followDistance = 2f; // Distância mínima para seguir
@@ -8,12 +8,14 @@ public class DogFollower : MonoBehaviour
     public float jumpForce = 12f; // Força do pulo
 
     private Rigidbody2D rb2d;
+    private AnimationController animationController;
     private bool isGrounded;
     private bool hasObstacle;
 
     void Awake()
     {
         player = GameObject.Find("Player");
+        animationController = GetComponent<AnimationController>();
     }
 
     void Start()
@@ -32,12 +34,15 @@ public class DogFollower : MonoBehaviour
 
     void FollowPlayer()
     {
+        float stopDistance = 0.06f;
         float distanceFromPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distanceFromPlayer > followDistance)
+        if (distanceFromPlayer + stopDistance > followDistance)
         {
             // Movimenta o cachorro em direção ao jogador
             Vector2 direction = (player.transform.position - transform.position).normalized;
             rb2d.velocity = new Vector2(direction.x * followSpeed, rb2d.velocity.y);
+
+            animationController.PlayAnimation("dog_walk");
 
             // Inverte o sprite dependendo da direção
             if (direction.x > 0)
@@ -60,8 +65,15 @@ public class DogFollower : MonoBehaviour
         }
         else
         {
-            if (Mathf.Abs(rb2d.velocity.x) > 0)
+            if (Mathf.Abs(rb2d.velocity.x) > 0.4f)
+            {
                 rb2d.velocity = new Vector2(rb2d.velocity.x / 1.08f, rb2d.velocity.y);
+            }
+            else
+            {
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                animationController.PlayAnimation("dog_idle");
+            }
         }
     }
 
