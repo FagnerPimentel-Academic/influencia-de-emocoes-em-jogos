@@ -7,14 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
-    public int maxJumps = 2;
-
     private bool isGrounded = true;
     private AnimationController animationController;
-
-    public int jumps = 0;
     public bool canJump = true;
-    public float jumpCooldownTime = 1;
     public float lastTimeOnGround;
 
     Dictionary <string, Color> emotionPerColor = new Dictionary<string, Color>();
@@ -65,13 +60,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Movement(){
-        if(rb2d.velocity.y != 0 || jumps >= maxJumps)
-            canJump = false;
-        if(Time.time - lastTimeOnGround >= jumpCooldownTime && jumps < maxJumps){
-            canJump = true;
-            jumps=0;
+        if(rb2d.velocity.y != 0){
+            canJump=false;
+        }else{
+            canJump=true;
         }
-        
 
         var hDirection = Input.GetAxisRaw("Horizontal");
         var vDirection = Input.GetAxisRaw("Vertical");
@@ -103,13 +96,12 @@ public class PlayerController : MonoBehaviour
 
         if (jumpPressed)
         {
-            if (canJump)
+            if (isGrounded && canJump)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
                 rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                canJump=false;
             }
-
-            jumps++;
         }
 
     }
