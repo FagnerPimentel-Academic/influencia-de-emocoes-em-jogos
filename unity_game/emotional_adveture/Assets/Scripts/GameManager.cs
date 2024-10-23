@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private GameObject player;
+    private GameObject player, colorFilter;
     private EmotionManager emotionManager;
 
     private float bound = 0.7f;
@@ -24,12 +24,13 @@ public class GameManager : MonoBehaviour
 
     void Awake(){
         instance = this;
-        player = GameObject.Find("Player");
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        colorFilter = GameObject.Find("Color Filter");
         emotionManager = GetComponent<EmotionManager>();
     }
 
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateEmotions();
-
         
     }
 
@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(emotion);
             lastEmotion = emotion;
             player.GetComponent<PlayerController>().ApplyEmotion(emotion);
+            colorFilter.GetComponent<ColorFilterController>().ApplyEmotion(emotion);
         }
     }
 }

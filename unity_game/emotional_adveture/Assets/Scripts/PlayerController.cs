@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour
 
         emotionPerColor.Add("NEUTRAL", Color.white);
         emotionPerColor.Add("HAPPY", Color.green);
-        emotionPerColor.Add("SAD", Color.blue);
+        emotionPerColor.Add("SAD", Color.grey);
         emotionPerColor.Add("ANGRY", Color.red);
-        emotionPerColor.Add("SCARY", Color.yellow);
+        emotionPerColor.Add("SCARY", Color.blue);
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ApplyEmotion(string emotion){
-        spriteRenderer.color = emotionPerColor[emotion];
+        // spriteRenderer.color = emotionPerColor[emotion];
     }
 
     private void Movement(){
