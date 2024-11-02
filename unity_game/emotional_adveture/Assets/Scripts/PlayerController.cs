@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        Attack();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -57,6 +58,12 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyEmotion(string emotion){
         // spriteRenderer.color = emotionPerColor[emotion];
+    }
+
+    private void Attack(){
+        var attackPressed = Input.GetButtonDown("Attack");
+        if(attackPressed)
+            animationController.PlayAnimation("player_attack");
     }
 
     private void Movement(){
