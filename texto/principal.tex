@@ -1,0 +1,107 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%            author(s): Fagner de Assis Moura Pimentel
+%%          description: Modelo de trabalho de Conclusão de Curso (TCC)
+%
+%%                  **  NÂO ALTERAR ESTE ARQUIVO **
+%%       No arquivo *info.tex* selecione a fase atual do seu TCC.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{fei}
+\usepackage[colorinlistoftodos,textsize=tiny]{todonotes}
+\usepackage{xcolor,colortbl}
+\usepackage{lipsum}  
+\usepackage{ifthen}
+\usepackage{caption}
+
+\addbibresource{referencias.bib}
+\input{info.tex}
+
+% \usepackage[utf8]{inputenc}
+% \usepackage[table]{xcolor}
+% \usepackage{biblatex}
+
+% \usepackage[
+%backend=biber,
+%style=alphabetic,
+%sorting=ynt
+%]{biblatex}
+
+% \usepackage{pgfplots}
+% \pgfplotsset{compat=1.7}
+% \usepackage{pgfplots}
+% \usetikzlibrary{calc}
+% \usepackage{amsmath}
+% \usepackage{subcaption}
+% \usepackage[utf8]{inputenc}
+% \usepackage{comment}
+\usepackage{acronym} 
+\usepackage[symbols]{glossaries}
+
+\author{
+\alunoUm\\
+\alunoDois\\
+\alunoTres\\
+\alunoQuatro\\
+\alunoCinco
+}
+
+\title{\titulo}
+\subtitulo{\sub}
+
+\input{Texto/glossaries}
+
+\makeindex
+\makeglossaries
+
+\begin{document}
+
+\maketitle
+\begin{folhaderosto}
+    Trabalho de Conclusão de Curso apresentado ao Centro Universitário FEI, como parte dos requisitos necessários para obtenção do título de Bacharel em \alunoCurso. Orientado pelo \orientador.
+\end{folhaderosto}
+
+\tableofcontents
+
+% if
+\ifthenelse{\equal{\faseAtual}{Projeto}}
+% then
+{
+
+    \input{Texto/resumo}
+    \input{Texto/introducao}
+    \input{Texto/conceitos}
+    \input{Texto/trabalhos}
+    \input{Texto/metodologia}
+    \input{Texto/cronograma}
+} 
+% else
+{
+    
+    \fichacatalografica
+    \folhadeaprovacao
+    \input{Texto/dedicatoria}
+    \input{Texto/agradecimentos}
+    \input{Texto/epigrafe}
+    \listoffigures
+    \listoftables
+    \listofalgorithms
+    \glsaddall
+    \printglossaries
+
+    \input{Texto/resumo}
+    \input{Texto/introducao}
+    \input{Texto/conceitos}
+    \input{Texto/trabalhos}
+    \input{Texto/metodologia}
+    
+    % \input{Texto/experimentos}
+    \input{Texto/resultados}
+    \input{Texto/discussao-conclusao}
+    
+}
+
+\printbibliography
+
+%\printindex
+
+\end{document}
