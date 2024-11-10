@@ -7,8 +7,8 @@ public class CameraController : MonoBehaviour
 {
     public Transform player;
     public new Camera camera;
-    public float yOffset = 3.85f;
-    public float followSpeed = 0.1f;
+    public float yOffset = -0.8f;
+    public float followSpeed = 0.05f;
     public float closeSpeed = 0.01f;
     public float normalSize = 5;
     public float closeSize = 4;
@@ -25,7 +25,15 @@ public class CameraController : MonoBehaviour
 
     void FixedUpdate(){
         var pos = player.position;
-        pos.y += yOffset * currentSize/normalSize;
+
+        // if(player.transform.position.y > 1.65){
+        //     yOffset = -4.8f;
+        // }else{
+        //     yOffset = -0.8f;
+        // }
+
+        //pos.y += yOffset * currentSize/normalSize;
+        pos.y = transform.position.y;
 
         transform.position = Vector2.Lerp(transform.position, pos, followSpeed);
 

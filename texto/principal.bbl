@@ -1,0 +1,841 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{moises2020reconhecimento}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=9e3a476e9abdf78299b6ed28fb989a69}{%
+           family={Ara\'{u}jo\bibnamedelima Mota},
+           familyi={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Mois\'{e}s\bibnamedelima Roberto},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0,
+           prefix={de},
+           prefixi={d\bibinitperiod},
+           prefixun=0}}%
+      }
+      \list{institution}{1}{%
+        {Universidade Federal de Campina Grande}%
+      }
+      \strng{namehash}{9e3a476e9abdf78299b6ed28fb989a69}
+      \strng{fullhash}{9e3a476e9abdf78299b6ed28fb989a69}
+      \strng{fullhashraw}{9e3a476e9abdf78299b6ed28fb989a69}
+      \strng{bibnamehash}{9e3a476e9abdf78299b6ed28fb989a69}
+      \strng{authorbibnamehash}{9e3a476e9abdf78299b6ed28fb989a69}
+      \strng{authornamehash}{9e3a476e9abdf78299b6ed28fb989a69}
+      \strng{authorfullhash}{9e3a476e9abdf78299b6ed28fb989a69}
+      \strng{authorfullhashraw}{9e3a476e9abdf78299b6ed28fb989a69}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{bookpagination}{sheet}
+      \field{title}{Reconhecimento de emo\c{c}\~{o}es em sinais de EEG via deep learning e reconstru\c{c}\~{a}o do espa\c{c}o de fase}
+      \field{type}{phdthesis}
+      \field{year}{2020}
+    \endentry
+    \entry{gameengine}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=47f45e65244c17ec9fa8771a5c6d60e1}{%
+           family={ARM},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{47f45e65244c17ec9fa8771a5c6d60e1}
+      \strng{fullhash}{47f45e65244c17ec9fa8771a5c6d60e1}
+      \strng{fullhashraw}{47f45e65244c17ec9fa8771a5c6d60e1}
+      \strng{bibnamehash}{47f45e65244c17ec9fa8771a5c6d60e1}
+      \strng{authorbibnamehash}{47f45e65244c17ec9fa8771a5c6d60e1}
+      \strng{authornamehash}{47f45e65244c17ec9fa8771a5c6d60e1}
+      \strng{authorfullhash}{47f45e65244c17ec9fa8771a5c6d60e1}
+      \strng{authorfullhashraw}{47f45e65244c17ec9fa8771a5c6d60e1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 17/08/2024)}
+      \field{title}{What is a Gaming Engine?}
+      \verb{urlraw}
+      \verb https://www.arm.com/glossary/gaming-engines
+      \endverb
+      \verb{url}
+      \verb https://www.arm.com/glossary/gaming-engines
+      \endverb
+      \keyw{game,engine,framework}
+    \endentry
+    \entry{awaresite}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=88dd8207e1e392274c472d0102981b4e}{%
+           family={AWARE},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{88dd8207e1e392274c472d0102981b4e}
+      \strng{fullhash}{88dd8207e1e392274c472d0102981b4e}
+      \strng{fullhashraw}{88dd8207e1e392274c472d0102981b4e}
+      \strng{bibnamehash}{88dd8207e1e392274c472d0102981b4e}
+      \strng{authorbibnamehash}{88dd8207e1e392274c472d0102981b4e}
+      \strng{authornamehash}{88dd8207e1e392274c472d0102981b4e}
+      \strng{authorfullhash}{88dd8207e1e392274c472d0102981b4e}
+      \strng{authorfullhashraw}{88dd8207e1e392274c472d0102981b4e}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11/05/2024)}
+      \field{title}{AWARE Framework}
+      \verb{urlraw}
+      \verb https://awareframework.com/
+      \endverb
+      \verb{url}
+      \verb https://awareframework.com/
+      \endverb
+      \keyw{aware,framework}
+    \endentry
+    \entry{batista2018estudo}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=7a63ce13b907799be9fb244cc5badc27}{%
+           family={Batista},
+           familyi={B\bibinitperiod},
+           given={M\^{o}nica\bibnamedelimb de\bibnamedelimb Lourdes\bibnamedelima Souza},
+           giveni={M\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6104b8bc61d844f1350406ac58e7becc}{%
+           family={Quint\~{a}o},
+           familyi={Q\bibinitperiod},
+           given={Patr\'{\i}cia\bibnamedelima Lima},
+           giveni={P\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4fe68fc66ee44d9c6d34f187e9d87b7c}{%
+           family={Lima},
+           familyi={L\bibinitperiod},
+           given={S\'{e}rgio\bibnamedelimb Muinhos\bibnamedelima Barroso},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f97657e56be65881aff9fbe00ca18b2c}{%
+           family={Campos},
+           familyi={C\bibinitperiod},
+           given={Luciana\bibnamedelimb Concei\c{c}\~{a}o\bibnamedelima Dias},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=179b06f9cba07bdc8f745f69779868a7}{%
+           family={BATISTA},
+           familyi={B\bibinitperiod},
+           given={Thiago\bibnamedelimb Jos\'{e}\bibnamedelimb de\bibnamedelima Souza},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d6c5ed802b186b64a51f398c900e6de6}
+      \strng{fullhash}{60bccc603d0ffe4362b1db442356aa1b}
+      \strng{fullhashraw}{60bccc603d0ffe4362b1db442356aa1b}
+      \strng{bibnamehash}{d6c5ed802b186b64a51f398c900e6de6}
+      \strng{authorbibnamehash}{d6c5ed802b186b64a51f398c900e6de6}
+      \strng{authornamehash}{d6c5ed802b186b64a51f398c900e6de6}
+      \strng{authorfullhash}{60bccc603d0ffe4362b1db442356aa1b}
+      \strng{authorfullhashraw}{60bccc603d0ffe4362b1db442356aa1b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista Eletr\^{o}nica da Faculdade Metodista Granbery-http://re. granbery. edu. br-ISSN}
+      \field{title}{Um estudo sobre a hist\'{o}ria dos jogos eletr\^{o}nicos}
+      \field{year}{2018}
+      \field{pages}{0377}
+      \range{pages}{1}
+    \endentry
+    \entry{bitalinoprosuto}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=fc3ff3f835f782eaa82dc4751fd7d0cb}{%
+           family={BITALINO},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{fc3ff3f835f782eaa82dc4751fd7d0cb}
+      \strng{fullhash}{fc3ff3f835f782eaa82dc4751fd7d0cb}
+      \strng{fullhashraw}{fc3ff3f835f782eaa82dc4751fd7d0cb}
+      \strng{bibnamehash}{fc3ff3f835f782eaa82dc4751fd7d0cb}
+      \strng{authorbibnamehash}{fc3ff3f835f782eaa82dc4751fd7d0cb}
+      \strng{authornamehash}{fc3ff3f835f782eaa82dc4751fd7d0cb}
+      \strng{authorfullhash}{fc3ff3f835f782eaa82dc4751fd7d0cb}
+      \strng{authorfullhashraw}{fc3ff3f835f782eaa82dc4751fd7d0cb}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 15/04/2024)}
+      \field{title}{BITalino (r)evolution Board Kit BLE/BT}
+      \verb{urlraw}
+      \verb https://www.pluxbiosignals.com/products/bitalino-revolution-board-kit-ble-bt
+      \endverb
+      \verb{url}
+      \verb https://www.pluxbiosignals.com/products/bitalino-revolution-board-kit-ble-bt
+      \endverb
+      \keyw{board,kit,bitalino,ble,bt}
+    \endentry
+    \entry{heartdroidsite}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a0b76bda8874efc8e04daf24be11edf9}{%
+           family={Bobek},
+           familyi={B\bibinitperiod},
+           given={Szymon},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a0b76bda8874efc8e04daf24be11edf9}
+      \strng{fullhash}{a0b76bda8874efc8e04daf24be11edf9}
+      \strng{fullhashraw}{a0b76bda8874efc8e04daf24be11edf9}
+      \strng{bibnamehash}{a0b76bda8874efc8e04daf24be11edf9}
+      \strng{authorbibnamehash}{a0b76bda8874efc8e04daf24be11edf9}
+      \strng{authornamehash}{a0b76bda8874efc8e04daf24be11edf9}
+      \strng{authorfullhash}{a0b76bda8874efc8e04daf24be11edf9}
+      \strng{authorfullhashraw}{a0b76bda8874efc8e04daf24be11edf9}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11/05/2024)}
+      \field{title}{HeaRTDroid}
+      \verb{urlraw}
+      \verb https://heartdroid.re/
+      \endverb
+      \verb{url}
+      \verb https://heartdroid.re/
+      \endverb
+      \keyw{bobek,heartdroid}
+    \endentry
+    \entry{empatica4site}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f0ffef5db745f4d99556a4ebca7d2125}{%
+           family={Empatica},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f0ffef5db745f4d99556a4ebca7d2125}
+      \strng{fullhash}{f0ffef5db745f4d99556a4ebca7d2125}
+      \strng{fullhashraw}{f0ffef5db745f4d99556a4ebca7d2125}
+      \strng{bibnamehash}{f0ffef5db745f4d99556a4ebca7d2125}
+      \strng{authorbibnamehash}{f0ffef5db745f4d99556a4ebca7d2125}
+      \strng{authornamehash}{f0ffef5db745f4d99556a4ebca7d2125}
+      \strng{authorfullhash}{f0ffef5db745f4d99556a4ebca7d2125}
+      \strng{authorfullhashraw}{f0ffef5db745f4d99556a4ebca7d2125}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 07/05/2024)}
+      \field{title}{Pulseira Empatica E4}
+      \verb{urlraw}
+      \verb https://www.empatica.com/en-int/research/e4/
+      \endverb
+      \verb{url}
+      \verb https://www.empatica.com/en-int/research/e4/
+      \endverb
+      \keyw{pulseira,empatica}
+    \endentry
+    \entry{bandreader}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=35fac8a70ff6783cd16356aec434a228}{%
+           family={Kutt},
+           familyi={K\bibinitperiod},
+           given={Krzysztof},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5cc4a0a317fc0c1b8311cb5cd608949b}{%
+           family={Nalepa},
+           familyi={N\bibinitperiod},
+           given={Grzegorz},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95eb2bc540fff76baf4eccde3c979e35}{%
+           family={Gi\.{z}ycka},
+           familyi={G\bibinitperiod},
+           given={Barbara},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=844935b92347dd18fa4483af6c0d2aef}{%
+           family={Jemio\l{}o},
+           familyi={J\bibinitperiod},
+           given={Pawe\l{}},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8372e1e25aee71724d2221876327f329}{%
+           family={Adamczyk},
+           familyi={A\bibinitperiod},
+           given={Marcin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1cf5ac0b34d0085bbb9b790adb5b475e}
+      \strng{fullhash}{ddc532a4d54308e57d6b4b0d12508540}
+      \strng{fullhashraw}{ddc532a4d54308e57d6b4b0d12508540}
+      \strng{bibnamehash}{1cf5ac0b34d0085bbb9b790adb5b475e}
+      \strng{authorbibnamehash}{1cf5ac0b34d0085bbb9b790adb5b475e}
+      \strng{authornamehash}{1cf5ac0b34d0085bbb9b790adb5b475e}
+      \strng{authorfullhash}{ddc532a4d54308e57d6b4b0d12508540}
+      \strng{authorfullhashraw}{ddc532a4d54308e57d6b4b0d12508540}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{07}
+      \field{title}{BandReader -- A Mobile Application for Data Acquisition from Wearable Devices in Affective Computing Experiments}
+      \field{year}{2018}
+      \field{pages}{42\bibrangedash 48}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/HSI.2018.8431271
+      \endverb
+    \endentry
+    \entry{biofeedback2008biofeedback}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4ea950acb5afec351566e5bbbcfbf302}{%
+           family={McKEE},
+           familyi={M\bibinitperiod},
+           given={Michael\bibnamedelima G.},
+           giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4ea950acb5afec351566e5bbbcfbf302}
+      \strng{fullhash}{4ea950acb5afec351566e5bbbcfbf302}
+      \strng{fullhashraw}{4ea950acb5afec351566e5bbbcfbf302}
+      \strng{bibnamehash}{4ea950acb5afec351566e5bbbcfbf302}
+      \strng{authorbibnamehash}{4ea950acb5afec351566e5bbbcfbf302}
+      \strng{authornamehash}{4ea950acb5afec351566e5bbbcfbf302}
+      \strng{authorfullhash}{4ea950acb5afec351566e5bbbcfbf302}
+      \strng{authorfullhashraw}{4ea950acb5afec351566e5bbbcfbf302}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cleveland Clinic journal of medicine}
+      \field{title}{Biofeedback: an overview in the context of heart-brain medicine}
+      \field{volume}{75}
+      \field{year}{2008}
+      \field{pages}{S31}
+      \range{pages}{-1}
+    \endentry
+    \entry{Microsoftband2}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=140864078aeca1c7c35b4beb33c53c34}{%
+           family={Microsoft},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{fullhash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{fullhashraw}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{bibnamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authorbibnamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authornamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authorfullhash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authorfullhashraw}{140864078aeca1c7c35b4beb33c53c34}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 07/06/2024)}
+      \field{title}{Microsoft Band 2 suporte}
+      \verb{urlraw}
+      \verb https://support.microsoft.com/en-gb/topic/what-can-i-still-do-with-my-microsoft-band-a2a59355-5be0-3441-9fff-4dc27bcbafb5
+      \endverb
+      \verb{url}
+      \verb https://support.microsoft.com/en-gb/topic/what-can-i-still-do-with-my-microsoft-band-a2a59355-5be0-3441-9fff-4dc27bcbafb5
+      \endverb
+      \keyw{microsoft,band2,watch}
+    \endentry
+    \entry{linkbase2}{dataset}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=28c289ee973de41622d0c7a468dd9b21}{%
+           family={Mishra},
+           familyi={M\bibinitperiod},
+           given={Sudhakar},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=58a86039fb51f7e159892772d785a93a}{%
+           family={Asif},
+           familyi={A\bibinitperiod},
+           given={Md.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aa379216192b10f09aeb0f9ec1c1400f}{%
+           family={Tiwary},
+           familyi={T\bibinitperiod},
+           given={Uma\bibnamedelima Shanker},
+           giveni={U\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9782422908d4f02e859a1d1bd9e6c2c0}{%
+           family={Srinivasan},
+           familyi={S\bibinitperiod},
+           given={Narayanan},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {OpenNeuro}%
+      }
+      \strng{namehash}{90cf4dc0a3cc20cfeac593190d8ced31}
+      \strng{fullhash}{8bfeb8ca7779b33a02a3b5e729188ea8}
+      \strng{fullhashraw}{8bfeb8ca7779b33a02a3b5e729188ea8}
+      \strng{bibnamehash}{90cf4dc0a3cc20cfeac593190d8ced31}
+      \strng{authorbibnamehash}{90cf4dc0a3cc20cfeac593190d8ced31}
+      \strng{authornamehash}{90cf4dc0a3cc20cfeac593190d8ced31}
+      \strng{authorfullhash}{8bfeb8ca7779b33a02a3b5e729188ea8}
+      \strng{authorfullhashraw}{8bfeb8ca7779b33a02a3b5e729188ea8}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{"Dataset on Emotion with Naturalistic Stimuli (DENS)"}
+      \field{year}{2023}
+      \verb{doi}
+      \verb doi:10.18112/openneuro.ds003751.v1.0.6
+      \endverb
+    \endentry
+    \entry{castlevania}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d957707a8952307a3e5eff04b2db86a8}{%
+           family={Mobygames},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{fullhash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{fullhashraw}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{bibnamehash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{authorbibnamehash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{authornamehash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{authorfullhash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{authorfullhashraw}{d957707a8952307a3e5eff04b2db86a8}
+      \field{extraname}{1}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradate}{1}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 16/08/2024)}
+      \field{title}{Castlevania Franchise Mobygames webpage}
+      \verb{urlraw}
+      \verb https://www.mobygames.com/game/3739/castlevania-symphony-of-the-night/
+      \endverb
+      \verb{url}
+      \verb https://www.mobygames.com/game/3739/castlevania-symphony-of-the-night/
+      \endverb
+      \keyw{castlevania,game}
+    \endentry
+    \entry{supermetroid}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d957707a8952307a3e5eff04b2db86a8}{%
+           family={Mobygames},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{fullhash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{fullhashraw}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{bibnamehash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{authorbibnamehash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{authornamehash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{authorfullhash}{d957707a8952307a3e5eff04b2db86a8}
+      \strng{authorfullhashraw}{d957707a8952307a3e5eff04b2db86a8}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradate}{2}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 16/08/2024)}
+      \field{title}{Super Metroid mobygames webpage}
+      \verb{urlraw}
+      \verb https://www.mobygames.com/game/6627/super-metroid/
+      \endverb
+      \verb{url}
+      \verb https://www.mobygames.com/game/6627/super-metroid/
+      \endverb
+      \keyw{metroid,supermetroid,game}
+    \endentry
+    \entry{nalepa2019emotionalcontext}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=409b560778b72b867f55a6c5467c49b4}{%
+           family={Nalepa},
+           familyi={N\bibinitperiod},
+           given={Grzegorz\bibnamedelima J},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=35fac8a70ff6783cd16356aec434a228}{%
+           family={Kutt},
+           familyi={K\bibinitperiod},
+           given={Krzysztof},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95eb2bc540fff76baf4eccde3c979e35}{%
+           family={Gi\.{z}ycka},
+           familyi={G\bibinitperiod},
+           given={Barbara},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=844935b92347dd18fa4483af6c0d2aef}{%
+           family={Jemio{\l{}}o},
+           familyi={J\bibinitperiod},
+           given={Pawe{\l{}}},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a0b76bda8874efc8e04daf24be11edf9}{%
+           family={Bobek},
+           familyi={B\bibinitperiod},
+           given={Szymon},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{9ac00aeb8e207b7a6dcb65979be710d5}
+      \strng{fullhash}{1731793006443a2471fb38ad18dc0c9c}
+      \strng{fullhashraw}{1731793006443a2471fb38ad18dc0c9c}
+      \strng{bibnamehash}{9ac00aeb8e207b7a6dcb65979be710d5}
+      \strng{authorbibnamehash}{9ac00aeb8e207b7a6dcb65979be710d5}
+      \strng{authornamehash}{9ac00aeb8e207b7a6dcb65979be710d5}
+      \strng{authorfullhash}{1731793006443a2471fb38ad18dc0c9c}
+      \strng{authorfullhashraw}{1731793006443a2471fb38ad18dc0c9c}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Sensors}
+      \field{number}{11}
+      \field{title}{Analysis and use of the emotional context with wearable devices for games and intelligent assistants}
+      \field{volume}{19}
+      \field{year}{2019}
+      \field{pages}{2509}
+      \range{pages}{1}
+    \endentry
+    \entry{eegimportanciasite}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f09e5cf4f03fdc23324066cf856dd82d}{%
+           family={Nyhus},
+           familyi={N\bibinitperiod},
+           given={Erika},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f09e5cf4f03fdc23324066cf856dd82d}
+      \strng{fullhash}{f09e5cf4f03fdc23324066cf856dd82d}
+      \strng{fullhashraw}{f09e5cf4f03fdc23324066cf856dd82d}
+      \strng{bibnamehash}{f09e5cf4f03fdc23324066cf856dd82d}
+      \strng{authorbibnamehash}{f09e5cf4f03fdc23324066cf856dd82d}
+      \strng{authornamehash}{f09e5cf4f03fdc23324066cf856dd82d}
+      \strng{authorfullhash}{f09e5cf4f03fdc23324066cf856dd82d}
+      \strng{authorfullhashraw}{f09e5cf4f03fdc23324066cf856dd82d}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 15/08/2024)}
+      \field{title}{From diagnosing brain disorders to cognitive enhancement, 100 years of EEG have transformed neuroscience}
+      \verb{urlraw}
+      \verb https://theconversation.com/from-diagnosing-brain-disorders-to-cognitive-enhancement-100-years-of-eeg-have-transformed-neuroscience-218012
+      \endverb
+      \verb{url}
+      \verb https://theconversation.com/from-diagnosing-brain-disorders-to-cognitive-enhancement-100-years-of-eeg-have-transformed-neuroscience-218012
+      \endverb
+      \keyw{nyhus,eeg}
+    \endentry
+    \entry{linkbase1}{dataset}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=9f991ebb1c60a503d33aceeec715933b}{%
+           family={Onton},
+           familyi={O\bibinitperiod},
+           given={Julie},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0f35d71ad7faf3e017929b58ea2cb94a}{%
+           family={Makeig},
+           familyi={M\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {OpenNeuro}%
+      }
+      \strng{namehash}{1aa331bf3d1b84092078e732dbfa8882}
+      \strng{fullhash}{1aa331bf3d1b84092078e732dbfa8882}
+      \strng{fullhashraw}{1aa331bf3d1b84092078e732dbfa8882}
+      \strng{bibnamehash}{1aa331bf3d1b84092078e732dbfa8882}
+      \strng{authorbibnamehash}{1aa331bf3d1b84092078e732dbfa8882}
+      \strng{authornamehash}{1aa331bf3d1b84092078e732dbfa8882}
+      \strng{authorfullhash}{1aa331bf3d1b84092078e732dbfa8882}
+      \strng{authorfullhashraw}{1aa331bf3d1b84092078e732dbfa8882}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{"Imagined Emotion Study"}
+      \field{year}{2022}
+      \verb{doi}
+      \verb doi:10.18112/openneuro.ds003004.v1.1.1
+      \endverb
+    \endentry
+    \entry{rocha2022analise}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=d3a7d1f5b0d12819d986a368c0a190b9}{%
+           family={Rocha},
+           familyi={R\bibinitperiod},
+           given={Isabella\bibnamedelima Lanes},
+           giveni={I\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fdc2c29da749dfa7c9f67b70459aa1ac}{%
+           family={Generozo},
+           familyi={G\bibinitperiod},
+           given={\'{\i}tallo\bibnamedelima Rocha},
+           giveni={\'{\i}\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4baace01868f10c3e07c3c8dd704f65a}{%
+           family={Amorim},
+           familyi={A\bibinitperiod},
+           given={Natan\bibnamedelima Cerqueira},
+           giveni={N\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b4130f5b96716dec8b90f561550ba32}{%
+           family={Dos\bibnamedelima Santos},
+           familyi={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={Ramon\bibnamedelima Alves},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7b84abc2727776369811d605af64f5aa}
+      \strng{fullhash}{2a867c37949e86abc55949952ffe81cc}
+      \strng{fullhashraw}{2a867c37949e86abc55949952ffe81cc}
+      \strng{bibnamehash}{7b84abc2727776369811d605af64f5aa}
+      \strng{authorbibnamehash}{7b84abc2727776369811d605af64f5aa}
+      \strng{authornamehash}{7b84abc2727776369811d605af64f5aa}
+      \strng{authorfullhash}{2a867c37949e86abc55949952ffe81cc}
+      \strng{authorfullhashraw}{2a867c37949e86abc55949952ffe81cc}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Brazilian Journal of Development}
+      \field{number}{7}
+      \field{title}{An\'{a}lise e interpreta\c{c}\~{a}o de sinais neurais para utiliza\c{c}\~{a}o eletroeletr\^{o}nica}
+      \field{volume}{8}
+      \field{year}{2022}
+      \field{pages}{50429\bibrangedash 50444}
+      \range{pages}{16}
+    \endentry
+    \entry{filipa2019emovere}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=186c0d0232806acb7be1041c8964bfa2}{%
+           family={Santos\bibnamedelima Batista},
+           familyi={S\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Andreia\bibnamedelima Filipa},
+           giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0,
+           prefix={dos},
+           prefixi={d\bibinitperiod},
+           prefixun=0}}%
+      }
+      \list{institution}{1}{%
+        {Universidade de Lisboa}%
+      }
+      \strng{namehash}{186c0d0232806acb7be1041c8964bfa2}
+      \strng{fullhash}{186c0d0232806acb7be1041c8964bfa2}
+      \strng{fullhashraw}{186c0d0232806acb7be1041c8964bfa2}
+      \strng{bibnamehash}{186c0d0232806acb7be1041c8964bfa2}
+      \strng{authorbibnamehash}{186c0d0232806acb7be1041c8964bfa2}
+      \strng{authornamehash}{186c0d0232806acb7be1041c8964bfa2}
+      \strng{authorfullhash}{186c0d0232806acb7be1041c8964bfa2}
+      \strng{authorfullhashraw}{186c0d0232806acb7be1041c8964bfa2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{bookpagination}{sheet}
+      \field{title}{Emovere: como podemos usar as emo\c{c}\~{o}es e a computa\c{c}\~{a}o afetiva no design de um jogo}
+      \field{type}{mathesis}
+      \field{year}{2019}
+    \endentry
+    \entry{shimizu2022improving}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=27876aea0a953f173a01fa6f6b4fcdcd}{%
+           family={Shimizu},
+           familyi={S\bibinitperiod},
+           given={Hirokatsu},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9f3849c0af38db389c2627e667c43a5f}{%
+           family={Srinivasan},
+           familyi={S\bibinitperiod},
+           given={Ramesh},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Public Library of Science San Francisco, CA USA}%
+      }
+      \strng{namehash}{00e01ebdf1a00baae4b98e9c824ecbbc}
+      \strng{fullhash}{00e01ebdf1a00baae4b98e9c824ecbbc}
+      \strng{fullhashraw}{00e01ebdf1a00baae4b98e9c824ecbbc}
+      \strng{bibnamehash}{00e01ebdf1a00baae4b98e9c824ecbbc}
+      \strng{authorbibnamehash}{00e01ebdf1a00baae4b98e9c824ecbbc}
+      \strng{authornamehash}{00e01ebdf1a00baae4b98e9c824ecbbc}
+      \strng{authorfullhash}{00e01ebdf1a00baae4b98e9c824ecbbc}
+      \strng{authorfullhashraw}{00e01ebdf1a00baae4b98e9c824ecbbc}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Plos one}
+      \field{number}{9}
+      \field{title}{Improving classification and reconstruction of imagined images from EEG signals}
+      \field{volume}{17}
+      \field{year}{2022}
+      \field{pages}{e0274847}
+      \range{pages}{-1}
+    \endentry
+    \entry{Unitysite}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=82dd98f1d663acc318e6a8ec4ab69b7a}{%
+           family={Unity},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{82dd98f1d663acc318e6a8ec4ab69b7a}
+      \strng{fullhash}{82dd98f1d663acc318e6a8ec4ab69b7a}
+      \strng{fullhashraw}{82dd98f1d663acc318e6a8ec4ab69b7a}
+      \strng{bibnamehash}{82dd98f1d663acc318e6a8ec4ab69b7a}
+      \strng{authorbibnamehash}{82dd98f1d663acc318e6a8ec4ab69b7a}
+      \strng{authornamehash}{82dd98f1d663acc318e6a8ec4ab69b7a}
+      \strng{authorfullhash}{82dd98f1d663acc318e6a8ec4ab69b7a}
+      \strng{authorfullhashraw}{82dd98f1d663acc318e6a8ec4ab69b7a}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 04/03/2024)}
+      \field{title}{Unity Game Engine}
+      \verb{urlraw}
+      \verb https://unity.com/pt
+      \endverb
+      \verb{url}
+      \verb https://unity.com/pt
+      \endverb
+      \keyw{unity,gameengine,engine,games}
+    \endentry
+    \entry{vieira2009modelos}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=cc08fe6c536009e2cce7aeaf2a007272}{%
+           family={Vieira},
+           familyi={V\bibinitperiod},
+           given={Vaninha},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=127a231cddde231c10aa2f425f38dda0}{%
+           family={Tedesco},
+           familyi={T\bibinitperiod},
+           given={Patricia},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8013c2a7b1c13be86524b8a15ff5eade}{%
+           family={Salgado},
+           familyi={S\bibinitperiod},
+           given={Ana\bibnamedelima Carolina},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{972658e6936e8546d4055d93ba635262}
+      \strng{fullhash}{972658e6936e8546d4055d93ba635262}
+      \strng{fullhashraw}{972658e6936e8546d4055d93ba635262}
+      \strng{bibnamehash}{972658e6936e8546d4055d93ba635262}
+      \strng{authorbibnamehash}{972658e6936e8546d4055d93ba635262}
+      \strng{authornamehash}{972658e6936e8546d4055d93ba635262}
+      \strng{authorfullhash}{972658e6936e8546d4055d93ba635262}
+      \strng{authorfullhashraw}{972658e6936e8546d4055d93ba635262}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Andr\'{e} Ponce de Leon F. de Carvalho, Tomasz Kowaltowski.(Org.). Jornadas de Atualiza\c{c}\~{a}o em Inform\'{a}tica}
+      \field{title}{Modelos e Processos para o desenvolvimento de Sistemas Sens\'{\i}veis ao Contexto}
+      \field{year}{2009}
+      \field{pages}{381\bibrangedash 431}
+      \range{pages}{51}
+    \endentry
+    \entry{acessibilidadenosjogos}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ee1f4904d39c2c667d52de3edee7d17d}{%
+           family={Werneck},
+           familyi={W\bibinitperiod},
+           given={Vivi},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ee1f4904d39c2c667d52de3edee7d17d}
+      \strng{fullhash}{ee1f4904d39c2c667d52de3edee7d17d}
+      \strng{fullhashraw}{ee1f4904d39c2c667d52de3edee7d17d}
+      \strng{bibnamehash}{ee1f4904d39c2c667d52de3edee7d17d}
+      \strng{authorbibnamehash}{ee1f4904d39c2c667d52de3edee7d17d}
+      \strng{authornamehash}{ee1f4904d39c2c667d52de3edee7d17d}
+      \strng{authorfullhash}{ee1f4904d39c2c667d52de3edee7d17d}
+      \strng{authorfullhashraw}{ee1f4904d39c2c667d52de3edee7d17d}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 15/08/2024)}
+      \field{title}{Acessibilidade em games: jogos para todos (de verdade)}
+      \verb{urlraw}
+      \verb https://tecnoblog.net/especiais/acessibilidade-em-games-jogos-para-todos-de-verdade/
+      \endverb
+      \verb{url}
+      \verb https://tecnoblog.net/especiais/acessibilidade-em-games-jogos-para-todos-de-verdade/
+      \endverb
+      \keyw{acessibilidade,jogos,games}
+    \endentry
+  \enddatalist
+  \missing{george_bernard}
+\endrefsection
+\endinput
+
