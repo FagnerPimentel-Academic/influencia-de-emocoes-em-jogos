@@ -28,6 +28,19 @@ public class ColorFilterController : MonoBehaviour
     }
 
     public void ApplyEmotion(string emotion){
-        spriteRenderer.color = emotionPerColor[emotion];
+        StartCoroutine(FadeToColor(emotionPerColor[emotion], 2f));
+    }
+
+    private IEnumerator FadeToColor(Color targetColor, float duration)
+    {
+        Color startColor = spriteRenderer.color;
+
+        for (float t = 0; t < 1; t += Time.deltaTime / duration)
+        {
+            spriteRenderer.color = Color.Lerp(startColor, targetColor, t);
+            yield return null;
+        }
+
+        spriteRenderer.color = targetColor;
     }
 }

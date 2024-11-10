@@ -7,13 +7,14 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
-    private bool isGrounded = true;
-    private AnimationController animationController;
     public bool canJump = true;
     public float lastTimeOnGround;
+    private bool isGrounded = true;
+    private string emotion = "NEUTRAL";
 
     Dictionary <string, Color> emotionPerColor = new Dictionary<string, Color>();
 
+    private AnimationController animationController;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb2d;
 
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
-        Attack();
+        // Attack();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -57,13 +58,13 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ApplyEmotion(string emotion){
-        // spriteRenderer.color = emotionPerColor[emotion];
+        this.emotion = emotion;
     }
 
     private void Attack(){
         var attackPressed = Input.GetButtonDown("Attack");
         if(attackPressed)
-            animationController.PlayAnimation("player_attack");
+            PlayAnimation("player_attack");
     }
 
     private void Movement(){
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
         if (hDirection == 1f)
         {
-            animationController.PlayAnimation("player_walk");
+            PlayAnimation("player_walk");
             spriteRenderer.flipX = false;
             transform.position = new Vector2(
                 transform.position.x + speed * Time.deltaTime,
@@ -88,14 +89,14 @@ public class PlayerController : MonoBehaviour
         }
         else if (hDirection == -1f)
         {
-            animationController.PlayAnimation("player_walk");
+            PlayAnimation("player_walk");
             spriteRenderer.flipX = true;
             transform.position = new Vector2(
                 transform.position.x - speed * Time.deltaTime,
                 transform.position.y
             );
         }else{
-            animationController.PlayAnimation("player_idle");
+            PlayAnimation("player_idle");
         }
 
         if (vDirection == 1f) { }
@@ -115,6 +116,15 @@ public class PlayerController : MonoBehaviour
 
     public bool GetIsGrounded(){
         return isGrounded;
+    }
+    
+
+    private void PlayAnimation(string animacao){
+        if (emotion == "SAD")
+            animationController.PlayAnimation(animacao + "_sad");
+        else
+            animationController.PlayAnimation(animacao);
+
     }
 
 }

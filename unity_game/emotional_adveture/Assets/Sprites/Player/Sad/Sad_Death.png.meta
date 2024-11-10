@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Sad_Death_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 58
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242ad9875bca01242b23393b97bbda78
+      internalID: 1542561060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 58
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76c06ef46d556c4d83a40f1526adc9b
+      internalID: -2102687839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 58
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb71ba4dfb00724e85132a16a545e06
+      internalID: 1130203880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_3
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 58
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b293a8daf811194790fa0d0ec2fe754
+      internalID: 1426886266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_4
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 58
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2808e92747b04244a88516c5df89ef5e
+      internalID: 1583575057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_5
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 58
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f317d67755eae4296e768257ff2e0b
+      internalID: -102794831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_6
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 58
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 412209034ecb12a4c98ad0a1ebdaa2cd
+      internalID: -1913624718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_7
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 58
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad6d10de7db6b154a900cc2c410ae97a
+      internalID: 213490123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 817312282f5f6ba47bcd605b91004e68
+      internalID: -40375832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_9
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f848b6390746dc641a411c3dcbe19c67
+      internalID: -602791166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_10
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b54b95d0517c0a47b901c3a7c32e5a8
+      internalID: 945562860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sad_Death_11
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 56.25
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49667fc415d85cc4a93fddc3ca6679cd
+      internalID: -1738184861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +371,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sad_Death_0: 1542561060
+      Sad_Death_1: -2102687839
+      Sad_Death_10: 945562860
+      Sad_Death_11: -1738184861
+      Sad_Death_2: 1130203880
+      Sad_Death_3: 1426886266
+      Sad_Death_4: 1583575057
+      Sad_Death_5: -102794831
+      Sad_Death_6: -1913624718
+      Sad_Death_7: 213490123
+      Sad_Death_8: -40375832
+      Sad_Death_9: -602791166
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
