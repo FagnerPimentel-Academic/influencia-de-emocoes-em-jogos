@@ -1,0 +1,30 @@
+\chapter{Cronograma}
+\label{cronograma}
+
+Para organizar o trabalho de forma a seguir um desenvolvimento efetivo, decidiu-se por separar em atividades as principais etapas de desenvolvimento.
+
+\begin{itemize}
+    \item \textbf{Atividade 1: Criar o Sistema de Classificação em Tempo Real (SCTR)} Esse sistema será o alicerce do projeto apresentado neste trabalho. Como abordado anteriormente, esse sistema será o responsável por capturar os sinais (ou, neste caso, receber do banco de dados) e imprimi-los em alguma saída ligada a um outro sistema que, neste caso, será o jogo experimental demonstrativo.
+    \item \textbf{Atividade 2: Criar o Jogo Experimental} O jogo experimental será desenvolvido em paralelo ao sistema de classificação (que será chamado de SCTR). Dessa forma, será possível realizar ajustes e adaptações de compatibilidade em torno de ambos os programas, facilitando sua integração um ao outro.
+    \item \textbf{Atividade 3: Testar o Output do SCTR} Essa etapa focará no tempo de resposta do SCTR. Para que seja possível utilizá-lo em um cenário que exija feedback em tempo real, o tempo de resposta do SCTR deve ser baixo, desde o momento da entrada de dados até o processamento e saída da classificação.
+    \item \textbf{Atividade 4: Implementar SCTR ao Jogo} Com o desenvolvimento em paralelo dedicado por mais tempo na Atividade 1, a etapa de implementação e entre esses dois sistemas será breve, focando em possíveis problemas de tempo de resposta e outros pormenores.
+    \item \textbf{Atividade 5: Baterias de Testes e Correções} Baterias de testes transcorrerão com uma versão dos programas que seja considerada "final" em um cenário real de produção. Com isso, espera-se a captura de mais erros e suas posteriores correções.
+    \item \textbf{Atividade 6: Levantamento de Resultados} Finalmente, serão classificados os resultados, tomando comparativos e métricas de melhora durante o projeto e o que espera-se de ser desempenho e futuro.
+\end{itemize}
+
+\begin{table}[h]
+\caption{Cronograma de execução do projeto.}
+\label{tab:cronograma}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Atividade / Mês & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline
+Atividade 1 & \gray & \gray & \gray & \gray &  & \\ \hline
+Atividade 2 & \gray & \gray & \gray & \gray &  & \\ \hline
+Atividade 3 &  &  &  & \gray & \gray & \\ \hline
+Atividade 4 &  &  &  &  & \gray &  \\ \hline
+Atividade 5 &  &  &  &  & \gray & \gray \\ \hline
+Atividade 6 &  &  &  &  & & \gray \\ \hline
+\end{tabular}
+}
+\end{table}
