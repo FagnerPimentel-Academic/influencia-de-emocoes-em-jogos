@@ -3,7 +3,7 @@ import json
 from time import sleep
 
 # Dados a serem enviados
-data = {"Happy": 0.1, "Sad": 0.1, "Angry": 0.8, "Scary": 0.0}
+data = {"Happy": 0.1, "Sad": 0.5, "Angry": 0.5, "Scary": 0.0}
 
 # Converter para JSON
 json_data = json.dumps(data)
@@ -13,7 +13,7 @@ HOST = '127.0.0.1'  # Endereço IP do servidor Unity
 PORT = 65432        # Porta que o servidor está escutando
 
 sleep(3)
-envios = 40
+envios = 50
 for i in range(envios):
     # Criação do socket
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:

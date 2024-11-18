@@ -16,7 +16,7 @@ public class ColorFilterController : MonoBehaviour
         float alpha = 0.08f;
         emotionPerColor.Add("NEUTRAL", new Color(1f, 1f, 1f, 0f));      // Branco
         emotionPerColor.Add("HAPPY", new Color(0f, 1f, 0f, alpha));     // Verde
-        emotionPerColor.Add("SAD", new Color(0.5f, 0.5f, 0.5f, alpha)); // Cinza
+        emotionPerColor.Add("SAD", new Color(0.6f, 0.6f, 0.6f, alpha)); // Cinza
         emotionPerColor.Add("ANGRY", new Color(1f, 0f, 0f, alpha));     // Vermelho
         emotionPerColor.Add("SCARY", new Color(0f, 0f, 1f, alpha));     // Azul
     }

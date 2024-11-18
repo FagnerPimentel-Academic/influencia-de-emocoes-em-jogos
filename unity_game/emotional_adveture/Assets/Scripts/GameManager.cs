@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private GameObject player, colorFilter;
+    private GameObject player, colorFilter, audioManager;
     private EmotionManager emotionManager;
 
     private float bound = 0.7f;
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private string emotion = "NEUTRAL";
 
     void Awake(){
+        if(instance == null)
         instance = this;
     }
 
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.Find("Player");
         colorFilter = GameObject.Find("Color Filter");
+        audioManager = GameObject.Find("Audio Manager");
         emotionManager = GetComponent<EmotionManager>();
     }
 
@@ -124,6 +126,7 @@ public class GameManager : MonoBehaviour
             lastEmotion = emotion;
             player.GetComponent<PlayerController>().ApplyEmotion(emotion);
             colorFilter.GetComponent<ColorFilterController>().ApplyEmotion(emotion);
+            audioManager.GetComponent<AudioManager>().ApplyEmotion(emotion);
         }
     }
 }
