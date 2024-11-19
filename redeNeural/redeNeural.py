@@ -32,6 +32,7 @@ def realizarDeteccao(emocao):
         amostraSelecionada = dadosTeste.iloc[indice_aleatorio].to_frame().T
         deteccao_angry_fear = modeloAngryFear.predict_proba(amostraSelecionada)
         deteccao = {classe: round(prob,2) for classe, prob in zip(modeloAngryFear.classes_, deteccao_angry_fear[0])}
+        return deteccao
     elif emocao in ['happy', 'sad']:
         dadosTesteHappySad = retornarArquivosDiretorio(pasta='treinamentos', extensoes=['dadosTestehappy_sad.csv'])
         labelTesteHappySad = retornarArquivosDiretorio(pasta='treinamentos', extensoes=['labelTestehappy_sad.csv'])
@@ -41,7 +42,8 @@ def realizarDeteccao(emocao):
         indice_aleatorio = random.choice(indices)
         amostraSelecionada = dadosTeste.iloc[indice_aleatorio].to_frame().T
         deteccao_happy_sad = modeloHappySad.predict_proba(amostraSelecionada)
-        deteccao = {classe: round(prob,2) for classe, prob in zip(modeloAngryFear.classes_, deteccao_happy_sad[0])}
+        deteccao = {classe: round(prob,2) for classe, prob in zip(modeloHappySad.classes_, deteccao_happy_sad[0])}
+        return deteccao
 
 
     # mapeamentoEmocoes = retornarMapeamentoEmocoes()
