@@ -1,17 +1,23 @@
-import pandas as pd
 import json
-import numpy as np
 import os
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten, Input, BatchNormalization, Conv1D, MaxPooling1D, LSTM, Dense
-from tensorflow.keras.regularizers import l2
-from tensorflow.keras.callbacks import EarlyStopping
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.layers import Dropout
+# from tensorflow.keras.models import Sequential
+# from tensorflow.keras.layers import Dense, Flatten, Input, BatchNormalization, Conv1D, MaxPooling1D, LSTM, Dense
+# from tensorflow.keras.regularizers import l2
+# from tensorflow.keras.callbacks import EarlyStopping
+# from tensorflow.keras.optimizers import Adam
+# from tensorflow.keras.layers import Dropout
 import random
 import matplotlib.pyplot as plt
-from tensorflow.python.keras.callbacks import EarlyStopping
-from tensorflow.python.keras.utils.version_utils import callbacks
+# from tensorflow.python.keras.callbacks import EarlyStopping
+# from tensorflow.python.keras.utils.version_utils import callbacks
+import pandas as pd
+import numpy as np
+from scipy.fft import fft, fftfreq
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.ensemble import RandomForestClassifier
+from itertools import combinations
+import joblib
 
 
 def dividirAmostras(lista, tamanhoAmostra):
@@ -76,45 +82,150 @@ def retornarNomeArquivo(caminhoArquivo):
 #     return modelo
 
 
-def criarModeloMLP(camadas, formaEntrada, mapeamentoEmocoes):
-    modelo = Sequential()
-    modelo.add(Input(shape=formaEntrada))
-    modelo.add(Flatten())
-    for camada in camadas:
-        modelo.add(Dense(camada, activation='tanh'))
-        # modelo.add(Dropout(0.2))
-        # modelo.add(BatchNormalization())
-    modelo.add(Dense(len(mapeamentoEmocoes), activation='softmax'))
+# def criarModeloMLP(camadas, formaEntrada, mapeamentoEmocoes):
+#     modelo = Sequential()
+#     modelo.add(Input(shape=formaEntrada))
+#     modelo.add(Flatten())
+#     for camada in camadas:
+#         modelo.add(Dense(camada, activation='tanh'))
+#         # modelo.add(Dropout(0.2))
+#         # modelo.add(BatchNormalization())
+#     modelo.add(Dense(len(mapeamentoEmocoes), activation='softmax'))
+#
+#     modelo.compile(
+#         optimizer='adam',
+#         loss='sparse_categorical_crossentropy',
+#         metrics=['accuracy']
+#     )
+#
+#     return modelo
 
-    modelo.compile(
-        optimizer='adam',
-        loss='sparse_categorical_crossentropy',
-        metrics=['accuracy']
-    )
+# def criarModeloCNNLSTM(formaEntrada, mapeamentoEmocoes):
+#     modelo = Sequential()
+#     modelo.add(Conv1D(64, 3, activation='tanh', input_shape=formaEntrada))
+#     modelo.add(MaxPooling1D(pool_size=2))
+#     modelo.add(LSTM(128))
+#     modelo.add(Dense(len(mapeamentoEmocoes), activation='softmax'))
+#
+#     modelo.compile(optimizer='adam',
+#                    loss='sparse_categorical_crossentropy',
+#                    metrics=['accuracy'])
+#     return modelo
 
-    return modelo
+# def criarModeloLSTM(formaEntrada, mapeamentoEmocoes):
+#     modelo = Sequential()
+#     modelo.add(LSTM(128, input_shape=formaEntrada))
+#     modelo.add(Dense(len(mapeamentoEmocoes), activation='softmax'))
+#
+#     modelo.compile(optimizer='adam',
+#                    loss='sparse_categorical_crossentropy',
+#                    metrics=['accuracy'])
+#     return modelo
 
-def criarModeloCNNLSTM(formaEntrada, mapeamentoEmocoes):
-    modelo = Sequential()
-    modelo.add(Conv1D(64, 3, activation='tanh', input_shape=formaEntrada))
-    modelo.add(MaxPooling1D(pool_size=2))
-    modelo.add(LSTM(128))
-    modelo.add(Dense(len(mapeamentoEmocoes), activation='softmax'))
+def extrairFourier(signal, sampling_rate=1000):
+    N = len(signal)
+    fft_values = fft(signal)
+    freqs = fftfreq(N, 1 / sampling_rate)
+    fft_magnitude = np.abs(fft_values)[:N // 2]
+    freqs = freqs[:N // 2]
 
-    modelo.compile(optimizer='adam',
-                   loss='sparse_categorical_crossentropy',
-                   metrics=['accuracy'])
-    return modelo
+    delta_band = (1, 4)
+    theta_band = (4, 8)
+    alpha_band = (8, 13)
+    beta_band = (13, 30)
 
-def criarModeloLSTM(formaEntrada, mapeamentoEmocoes):
-    modelo = Sequential()
-    modelo.add(LSTM(128, input_shape=formaEntrada))
-    modelo.add(Dense(len(mapeamentoEmocoes), activation='softmax'))
+    def power_in_band(band, freqs, fft_magnitude):
+        band_mask = (freqs >= band[0]) & (freqs <= band[1])
+        return np.sum(fft_magnitude[band_mask])
 
-    modelo.compile(optimizer='adam',
-                   loss='sparse_categorical_crossentropy',
-                   metrics=['accuracy'])
-    return modelo
+    delta_power = power_in_band(delta_band, freqs, fft_magnitude)
+    theta_power = power_in_band(theta_band, freqs, fft_magnitude)
+    alpha_power = power_in_band(alpha_band, freqs, fft_magnitude)
+    beta_power = power_in_band(beta_band, freqs, fft_magnitude)
+
+    return [delta_power, theta_power, alpha_power, beta_power]
+
+def extrairAmostras(signal):
+    amostras = []
+    for eletrodo in signal.T:
+        amostrasFourier = extrairFourier(eletrodo)
+        amostras.extend(amostrasFourier)
+    return amostras
+
+def prepararDadosParaRandomForest(arquivos, emocoes):
+    X = []
+    y = []
+    for arquivo in arquivos:
+        df = pd.read_csv(arquivo)
+        label = df['emotion'][1]
+        if label in emocoes:
+            dados = df.iloc[:, :-2].values
+            amostras = extrairAmostras(dados)
+            if len(amostras) == 68:
+                X.append(amostras)
+                y.append(label)
+    return np.array(X), np.array(y)
+
+def salvarModelo(model, filename):
+    joblib.dump(model, filename)
+    print(f"Modelo salvo como {filename}")
+
+def carregarModelo(filename):
+    return joblib.load(filename)
+
+def rotinaModeloRandomForest():
+    arquivos = retornarArquivosDiretorio(pasta='emotions', extensoes=['dados_eeg.csv'])
+    arquivos = [arquivo for arquivo in arquivos]
+    emocoes = ['angry', 'happy', 'sad', 'fear']
+
+    results = {}
+
+    for parEmocoes in combinations(emocoes, 2):
+        print(f"\nTreinando modelo para as emoções: {parEmocoes}")
+
+        X, y = prepararDadosParaRandomForest(arquivos, parEmocoes)
+
+        if len(X) == 0:
+            print(f"Sem dados suficientes para {parEmocoes}. Pulando...")
+            continue
+        model_filename = f"model_{parEmocoes[0]}_{parEmocoes[1]}.pkl"
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        df_X = pd.DataFrame(X_test)
+        df_X.to_csv(f"dadosTeste{parEmocoes[0]}_{parEmocoes[1]}.csv", index=False)
+        df_y = pd.DataFrame(y_test, columns=['label'])
+        df_y.to_csv(f"labelTeste{parEmocoes[0]}_{parEmocoes[1]}.csv", index=False)
+
+        param_grid = {
+            'n_estimators': [50, 100, 200, 300, 400, 500],
+            'max_depth': [10, 20, 30, 40, 50, 60, 70, 80, 90,100, None],
+            'min_samples_split': [2, 10, 20, 30, 40, 50],
+            'max_features': ['sqrt', 'log2', None]
+        }
+
+        rf = RandomForestClassifier()
+        grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=5, scoring='accuracy', verbose=3)
+        grid_search.fit(X_train, y_train)
+
+        best_rf_model = grid_search.best_estimator_
+        salvarModelo(best_rf_model, model_filename)
+
+        predicao = best_rf_model.predict(X_test)
+
+        accuracy = accuracy_score(y_test, predicao)
+        print(f"Acurácia do modelo: {accuracy * 100:.2f}%")
+
+        results[parEmocoes] = accuracy
+
+        print("\nRelatório de classificação:")
+        print(classification_report(y_test, predicao))
+
+    print("\nAcurácias para cada combinação de emoções:")
+    for parEmocoes, acuracia in results.items():
+        print(f"Emoções: {parEmocoes}, Acurácia: {acuracia * 100:.2f}%")
+
+    melhorCombinacao = max(results, key=results.get)
+    print(f"\nA melhor combinação é: {melhorCombinacao} com acurácia de {results[melhorCombinacao] * 100:.2f}%")
 
 
 def gerarEstruturaCamadas(numMax=100, decrementarNum=5, porcentCamadaUm=0.8, porcentCamadaDois=0.2):

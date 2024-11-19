@@ -40,33 +40,11 @@ def limparTerminal():
 def exibirMenu():
     print("\n======== Menu Principal ========")
     print("1. Projeção 3D.")
-    print("2. Encontrar melhor rede neural.")
-    print("3. Realizar treinamento.")
-    print("4. Detectar emoção.")
-    print("5. Sair.")
+    # print("2. Encontrar melhor rede neural.")
+    print("2. Realizar treinamento.")
+    print("3. Detectar emoção.")
+    print("4. Sair.")
     print("================================")
-
-
-def processar_emocoes():
-    caminhoMapeamentoEmocoes = os.path.dirname(os.path.abspath(__file__)) + '/mapeamentoEmocoes.json'
-    try:
-        with open(caminhoMapeamentoEmocoes, 'r') as jsonEmocoes:
-            dadosEmocoes = json.load(jsonEmocoes)
-        if not dadosEmocoes:
-            raise ValueError("O mapeamento de emoções JSON está vazio.")
-        print("\nEmoções processadas com sucesso!")
-        # Chama a função pontosSubject3D() se necessário
-        pontosSubject3D()
-    except Exception as e:
-        print("Erro ao processar emoções: " + str(e))
-
-
-def exibir_configuracoes():
-    # Exemplo fictício de configuração de rede neural
-    print("\nConfigurações da Rede Neural:")
-    print("Arquitetura: 40 camadas, 224 unidades por camada")
-    print("Épocas: 50")
-    print("Acurácia estimada: 92%")
 
 def main():
     limparTerminal()
@@ -102,86 +80,87 @@ def main():
                     break
                 else:
                     print("Opção inválida, tente novamente.")
+        # elif opcaoMenu == '2':
+        #     while True:
+        #         limparTerminal()
+        #         print("\n======== Encontrar melhor rede neural ========")
+        #         print("Essa opção costuma demorar um bom tempo, tem certeza que deseja continuar?")
+        #         print("1. Sim.")
+        #         print("2. Não.")
+        #         print("================================")
+        #         opcaoEncontrarMelhorRede = input("Escolha uma opção: ")
+        #         if opcaoEncontrarMelhorRede == '1':
+        #             print("Iniciando busca...")
+        #             encontrarMelhorRedeNeural(formaEntrada)
+        #             print("Arquivo de resultado salvo na pasta de 'treinamentos'.")
+        #             time.sleep(4)
+        #             limparTerminal()
+        #             break
+        #         elif opcaoEncontrarMelhorRede == '2':
+        #             limparTerminal()
+        #             break
+        #         else:
+        #             print("Opção inválida, tente novamente.")
         elif opcaoMenu == '2':
-            while True:
-                limparTerminal()
-                print("\n======== Encontrar melhor rede neural ========")
-                print("Essa opção costuma demorar um bom tempo, tem certeza que deseja continuar?")
-                print("1. Sim.")
-                print("2. Não.")
-                print("================================")
-                opcaoEncontrarMelhorRede = input("Escolha uma opção: ")
-                if opcaoEncontrarMelhorRede == '1':
-                    print("Iniciando busca...")
-                    encontrarMelhorRedeNeural(formaEntrada)
-                    print("Arquivo de resultado salvo na pasta de 'treinamentos'.")
-                    time.sleep(4)
-                    limparTerminal()
-                    break
-                elif opcaoEncontrarMelhorRede == '2':
-                    limparTerminal()
-                    break
-                else:
-                    print("Opção inválida, tente novamente.")
+            realizarTreinamento()
+            # while True:
+            #     limparTerminal()
+            #     print("\n======== Realizar treinamento ========")
+            #     print("1. Utilizar a melhor rede encontrada.")
+            #     print("2. Realizar treinamento inserindo parâmetros manualmente.")
+            #     print("================================")
+            #     opcaoRealizarTreinamento = input("Escolha uma opção: ")
+            #     if opcaoRealizarTreinamento not in ['1', '2']:
+            #         print("Opção inválida, tente novamente.")
+            #     else:
+            #         while True:
+            #             limparTerminal()
+            #             print("\n======== Tipo de treinamento ========")
+            #             print("1. Por sujeito (80% da onda treinar / 20% onda teste).")
+            #             print("2. Onda fragmentada (Onda separada, 1 tick para treinamento, 1 tick para testes).")
+            #             print("================================")
+            #             opcaoTipoTreinamento = input("Escolha uma opção: ")
+            #             tipoTreinamento = 'porSujeito' if opcaoTipoTreinamento == '1' else 'ondaFragmentada' if opcaoTipoTreinamento == '2' else 'opcaoErrada'
+            #             if opcaoTipoTreinamento not in ['1', '2']:
+            #                 print("Opção inválida, tente novamente.")
+            #             elif opcaoRealizarTreinamento == '1':
+            #                 print("Iniciando treinamento...")
+            #                 try:
+            #                     realizarTreinamento(formaEntrada, melhorRedeNeural=True, tipoTreinamento=tipoTreinamento)
+            #                     print("Modelo salvo na pasta de 'treinamentos'.")
+            #                     time.sleep(4)
+            #                     break
+            #                 except Exception as e:
+            #                     print("Erro ao tentar treinar modelo. %s" % e.args[0])
+            #                     time.sleep(4)
+            #                     limparTerminal()
+            #                     break
+            #             elif opcaoRealizarTreinamento == '2':
+            #                 print("\n======== Realizar treinamento ========")
+            #                 print("Necessário fornecer as informações abaixo nessa ordem:")
+            #                 print("1. Quantidade de épocas para o treinamento. (Informação numérica)*")
+            #                 print("2. Quantidade de neurônios na 1º camada.    (Informação numérica)*")
+            #                 print("3. Quantidade de neurônios na 2º camada.    (Informação numérica)*")
+            #                 print("4. Quantidade de neurônios na 3º camada.    (Informação numérica)*")
+            #                 print("================================")
+            #                 epocas = input("Insira a quantidade de eṕocas: ")
+            #                 primeiraCamada = input("Insira a quantiade de neurônios (1º camada): ")
+            #                 segundaCamada = input("Insira a quantiade de neurônios (2º camada): ")
+            #                 terceiraCamada = input("Insira a quantiade de neurônios (3º camada): ")
+            #                 try:
+            #                     realizarTreinamento(formaEntrada, dadosManuais={'epocas': epocas,
+            #                                                       'neuronios': [primeiraCamada, segundaCamada, terceiraCamada]},
+            #                                         nomeModelo='modeloManualTreinado.keras', tipoTreinamento=tipoTreinamento)
+            #                     print("Modelo salvo na pasta de 'treinamentos'.")
+            #                     time.sleep(4)
+            #                     break
+            #                 except Exception as e:
+            #                     print("Erro ao tentar treinar modelo manualmente. %s" % e.args[0])
+            #                     time.sleep(4)
+            #                     limparTerminal()
+            #                     break
+            #         break
         elif opcaoMenu == '3':
-            while True:
-                limparTerminal()
-                print("\n======== Realizar treinamento ========")
-                print("1. Utilizar a melhor rede encontrada.")
-                print("2. Realizar treinamento inserindo parâmetros manualmente.")
-                print("================================")
-                opcaoRealizarTreinamento = input("Escolha uma opção: ")
-                if opcaoRealizarTreinamento not in ['1', '2']:
-                    print("Opção inválida, tente novamente.")
-                else:
-                    while True:
-                        limparTerminal()
-                        print("\n======== Tipo de treinamento ========")
-                        print("1. Por sujeito (80% da onda treinar / 20% onda teste).")
-                        print("2. Onda fragmentada (Onda separada, 1 tick para treinamento, 1 tick para testes).")
-                        print("================================")
-                        opcaoTipoTreinamento = input("Escolha uma opção: ")
-                        tipoTreinamento = 'porSujeito' if opcaoTipoTreinamento == '1' else 'ondaFragmentada' if opcaoTipoTreinamento == '2' else 'opcaoErrada'
-                        if opcaoTipoTreinamento not in ['1', '2']:
-                            print("Opção inválida, tente novamente.")
-                        elif opcaoRealizarTreinamento == '1':
-                            print("Iniciando treinamento...")
-                            try:
-                                realizarTreinamento(formaEntrada, melhorRedeNeural=True, tipoTreinamento=tipoTreinamento)
-                                print("Modelo salvo na pasta de 'treinamentos'.")
-                                time.sleep(4)
-                                break
-                            except Exception as e:
-                                print("Erro ao tentar treinar modelo. %s" % e.args[0])
-                                time.sleep(4)
-                                limparTerminal()
-                                break
-                        elif opcaoRealizarTreinamento == '2':
-                            print("\n======== Realizar treinamento ========")
-                            print("Necessário fornecer as informações abaixo nessa ordem:")
-                            print("1. Quantidade de épocas para o treinamento. (Informação numérica)*")
-                            print("2. Quantidade de neurônios na 1º camada.    (Informação numérica)*")
-                            print("3. Quantidade de neurônios na 2º camada.    (Informação numérica)*")
-                            print("4. Quantidade de neurônios na 3º camada.    (Informação numérica)*")
-                            print("================================")
-                            epocas = input("Insira a quantidade de eṕocas: ")
-                            primeiraCamada = input("Insira a quantiade de neurônios (1º camada): ")
-                            segundaCamada = input("Insira a quantiade de neurônios (2º camada): ")
-                            terceiraCamada = input("Insira a quantiade de neurônios (3º camada): ")
-                            try:
-                                realizarTreinamento(formaEntrada, dadosManuais={'epocas': epocas,
-                                                                  'neuronios': [primeiraCamada, segundaCamada, terceiraCamada]},
-                                                    nomeModelo='modeloManualTreinado.keras', tipoTreinamento=tipoTreinamento)
-                                print("Modelo salvo na pasta de 'treinamentos'.")
-                                time.sleep(4)
-                                break
-                            except Exception as e:
-                                print("Erro ao tentar treinar modelo manualmente. %s" % e.args[0])
-                                time.sleep(4)
-                                limparTerminal()
-                                break
-                    break
-        elif opcaoMenu == '4':
             while True:
                 limparTerminal()
                 print("\n======== Detectar emoção ========")
@@ -199,8 +178,16 @@ def main():
                 elif opcaoDetectarEmocao not in ['1', '2', '3', '4']:
                     print("Opção inválida, tente novamente.")
                 else:
+                    if opcaoDetectarEmocao == '1':
+                        emocao = 'angry'
+                    elif opcaoDetectarEmocao == '2':
+                        emocao = 'happy'
+                    elif opcaoDetectarEmocao == '3':
+                        emocao = 'sad'
+                    else:
+                        emocao = 'fear'
                     try:
-                        realizarDeteccao(int(opcaoDetectarEmocao)-1)
+                        realizarDeteccao(emocao)
                         time.sleep(2)
                         limparTerminal()
                     except Exception as e:

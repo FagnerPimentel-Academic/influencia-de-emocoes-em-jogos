@@ -1,7 +1,8 @@
 from tensorflow.keras.layers import Dense, Flatten, Input
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.models import Sequential
-from funcoesGerais import retornarArquivosDiretorio, criarModeloMLP, treinarModelo, reprocessarEegFiltrados, \
+# criarModeloMLP
+from funcoesGerais import retornarArquivosDiretorio, treinarModelo, reprocessarEegFiltrados, \
     retornarAmostras, gerarEstruturaCamadas, retornarMapeamentoEmocoes
 import pandas as pd
 
