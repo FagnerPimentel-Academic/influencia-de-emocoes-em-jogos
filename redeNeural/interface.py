@@ -29,7 +29,7 @@ class CustomTable(ctk.CTkFrame):
 
         for col in columns:
             label = ctk.CTkLabel(header_frame, text=col, font=("Helvetica", 12, "bold"),
-                                 text_color="white", fg_color="#2e2e2e",bg_color="#121212")
+                                 text_color="white", fg_color="#2e2e2e",bg_color="#2e2e2e")
             label.pack(side="left", padx=1, pady=1, ipadx=56, ipady=5, expand=True)
 
         self.data_frame = ctk.CTkScrollableFrame(self, fg_color="#121212")
@@ -66,7 +66,6 @@ def atualizar_indicador(emocao,count):
         ctk.CTkLabel(frame_indicador, text=f"{count}0%     ", text_color="red",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=275)
         
 def send_emotion(emotion,count):
-    print(emotion)
     atualizar_indicador(emotion,count)
     # json_data = json.dumps(emotions)
 
@@ -96,14 +95,14 @@ def on_click(emotion):
         for i in range(10):
             response = realizarDeteccao(emotion)
             if emotion == "happy":
-                if response[emotion] > response["sad"]:
+                if float(response[emotion]) > float(response['sad']):
                     count += 1
-                data.append((emotion, data_formatada, hora_formatada, str(response[emotion]).split(".")[1]))
+                data.append((emotion, data_formatada, hora_formatada, response[emotion]*100))
             elif emotion == "fear":
                 if response[emotion] > response["angry"]:
                     count += 1
-                data.append((emotion, data_formatada, hora_formatada, str(response[emotion]).split(".")[1]))
-        
+                data.append((emotion, data_formatada, hora_formatada, response[emotion]*100))
+
         if emotion == "neutro":
             send_emotion(emotion,10)
         elif emotion == "happy" and count >= 5:
@@ -190,7 +189,7 @@ ctk.CTkLabel(frame_lancamentos, image=photo_recentes_img, text="", fg_color="#1a
 
 ctk.CTkLabel(frame_lancamentos, text="Lançados Recentemente", text_color="white", fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=40)
 
-columns = ["Emoção", "Data", "Hora", "Status"]
+columns = ["Emoção", "Data", "Hora", "Status %"]
 table = CustomTable(frame_lancamentos, columns, data, width=2000, height=800)
 table.place(x=40, y=70)
 
