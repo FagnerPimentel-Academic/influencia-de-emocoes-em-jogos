@@ -41,7 +41,7 @@ def realizarDeteccao(emocao):
         indice_aleatorio = random.choice(indices)
         amostraSelecionada = dadosTeste.iloc[indice_aleatorio].to_frame().T
         deteccao_happy_sad = modeloHappySad.predict_proba(amostraSelecionada)
-        deteccao = {classe: round(prob,2) for classe, prob in zip(modeloAngryFear.classes_, deteccao_angry_fear[0])}
+        deteccao = {classe: round(prob,2) for classe, prob in zip(modeloAngryFear.classes_, deteccao_happy_sad[0])}
 
 
     # mapeamentoEmocoes = retornarMapeamentoEmocoes()
