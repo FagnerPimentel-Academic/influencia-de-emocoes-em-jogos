@@ -14,13 +14,10 @@ public class EmotionManager : MonoBehaviour
     [Serializable]
     public class EmotionData
     {
-        public float Happy;
-        public float Sad;
-        public float Angry;
-        public float Scary;
+        public string emotion;
     }
 
-    EmotionData currentEmotions;
+    EmotionData currentEmotion;
 
     void Start()
     {
@@ -69,13 +66,13 @@ public class EmotionManager : MonoBehaviour
 
     void ProcessJsonData(string jsonData)
     {
-        currentEmotions = JsonUtility.FromJson<EmotionData>(jsonData);
+        currentEmotion = JsonUtility.FromJson<EmotionData>(jsonData);
         newData = true;
         // Debug.Log($"Happy: {currentEmotions.Happy}, Sad: {currentEmotions.Sad}, Angry: {currentEmotions.Angry}, Scary: {currentEmotions.Scary}");
     }
 
     public EmotionData GetEmotions(){
-        var value = newData ? currentEmotions : null;
+        var value = newData ? currentEmotion : null;
         newData = false;
         return value;
     }
