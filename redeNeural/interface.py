@@ -46,13 +46,14 @@ class CustomTable(ctk.CTkFrame):
     def update_data(self, data):
         for widget in self.data_frame.winfo_children():
             widget.destroy()
-        for row_data in data:
+
+        for row_data in reversed(data):
             row_frame = ctk.CTkFrame(self.data_frame, fg_color="#121212")
             row_frame.pack(fill="x", pady=2)
 
             for index, item in enumerate(row_data):
                 if index == 2:
-                    text_color = "green" if int(item)>=70 else "red"
+                    text_color = "green" if int(item) >= 70 else "red"
                 else:
                     text_color = "white"
 
@@ -62,13 +63,14 @@ class CustomTable(ctk.CTkFrame):
 
 
 def atualizar_indicador(emotion,count,accuracy_avg,resultTime,longest_time):
+    for widget in frame_indicador.winfo_children():
+        if not hasattr(widget, "tag") or widget.tag != "manter":
+            widget.destroy()
+            
     emotions = { "happy": photo_felicidades_img, "fear": photo_medo_img, "neutral": photo_neutro_img, "sad": photo_tristeza_img, "angry": photo_raiva_img}  
     ctk.CTkLabel(frame_indicador, image=emotions[emotion], text="",bg_color="#121212").place(x=190, y=75)
     if emotion == 'neutral':
-        ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=225)
-        ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=300)
-        ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=325)
-        ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=350)
+        pass
     elif count >= 0.7*predicts:
         ctk.CTkLabel(frame_indicador, text="Taxa de acerto:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=250)
         ctk.CTkLabel(frame_indicador, text=f"{int((count/predicts)*100)}%     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=225)
@@ -243,8 +245,14 @@ ctk.CTkButton(frame_emocoes, image=photo_opcoes_img, text="",bg_color="#121212",
 
 frame_indicador = ctk.CTkFrame(root, fg_color='#1a1a1a', width=800, height=600)
 frame_indicador.place(x=750, y=20)
-ctk.CTkLabel(frame_indicador, image=photo_ondas_img, text="", text_color="white", font=("Helvetica", 14)).pack(anchor="w", padx=10, pady=5)
-ctk.CTkLabel(frame_indicador, text="Emoção enviada", text_color="white", fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=20)
+frame_indicador_label = ctk.CTkLabel(frame_indicador, image=photo_ondas_img, text="", text_color="white", font=("Helvetica", 14))
+frame_indicador_label.tag = "manter"
+frame_indicador_label.pack(anchor="w", padx=10, pady=5)
+
+frame_indicador_title = ctk.CTkLabel(frame_indicador, text="Emoção enviada", text_color="white", fg_color="#121212", font=("Poppins", 14, "bold"))
+frame_indicador_title.tag = "manter"
+frame_indicador_title.place(x=40, y=20)
+
 atualizar_indicador("neutral",predicts,100,0,0)
 
 frame_lancamentos = ctk.CTkFrame(root, fg_color='#1a1a1a', width=690, height=500)
