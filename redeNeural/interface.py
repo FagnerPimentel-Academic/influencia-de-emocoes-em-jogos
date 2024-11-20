@@ -18,10 +18,10 @@ root.configure(bg='#1e1e2d')
 
 data = []
 
-emotion1 = "fear"
-emotion2 = "angry"
+emotion1 = "sad"
+emotion2 = "fear"
 
-predicts = 30
+predicts = 10
 
 import customtkinter as ctk
 
