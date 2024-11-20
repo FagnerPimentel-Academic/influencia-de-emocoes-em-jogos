@@ -136,22 +136,23 @@ def on_click(emotion):
         accuracy_avg = 0
         time_avg = 0
         longest_time = 0
-        for _ in range(predicts):
-            start = time.time()
-            response = realizarDeteccao(emotion)
-            end = time.time()
-            resultTime = round((end-start)*1000)
-            time_avg += resultTime
+        if emotion == "neutral":
+            data.append((emotion, 0, 100.0, emotion))
+        else:
+            for _ in range(predicts):
+                start = time.time()
+                response = realizarDeteccao(emotion)
+                end = time.time()
+                resultTime = round((end-start)*1000)
+                time_avg += resultTime
 
-            if resultTime > longest_time:
-                longest_time = resultTime
+                if resultTime > longest_time:
+                    longest_time = resultTime
 
-            if emotion in emotion_pairs:
-                opposite = emotion_pairs[emotion]
-                count,accurace = process_emotion(emotion, opposite, response, count, resultTime)
-                accuracy_avg += accurace
-            elif emotion == "neutral":
-                data.append((emotion, 0, 100.0, emotion))
+                if emotion in emotion_pairs:
+                    opposite = emotion_pairs[emotion]
+                    count,accurace = process_emotion(emotion, opposite, response, count, resultTime)
+                    accuracy_avg += accurace
 
         if emotion == "neutral":
             send_emotion(emotion, predicts,100,0,0)
