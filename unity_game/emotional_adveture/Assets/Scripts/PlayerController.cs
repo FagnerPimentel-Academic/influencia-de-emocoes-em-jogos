@@ -44,7 +44,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isAlive)
         {
-            Movement();
+            if (!animationLocked)
+            {
+                Movement();
+            }
             Attack();
         }
     }
@@ -75,7 +78,10 @@ public class PlayerController : MonoBehaviour
     {
         var attackPressed = Input.GetButtonDown("Attack");
         if (attackPressed)
-            PlayAnimation("player_attack");
+        {
+            PlaySmartAnimation("player_attack");
+
+        }
     }
 
     private void Movement()
@@ -95,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
         if (hDirection == 1f)
         {
-            PlayAnimation("player_walk");
+            PlaySmartAnimation("player_walk");
             spriteRenderer.flipX = false;
             transform.position = new Vector2(
                 transform.position.x + speed * Time.deltaTime,
@@ -104,7 +110,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (hDirection == -1f)
         {
-            PlayAnimation("player_walk");
+            PlaySmartAnimation("player_walk");
             spriteRenderer.flipX = true;
             transform.position = new Vector2(
                 transform.position.x - speed * Time.deltaTime,
@@ -113,7 +119,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            PlayAnimation("player_idle");
+            PlaySmartAnimation("player_idle");
         }
 
         if (vDirection == 1f) { }
@@ -135,21 +141,20 @@ public class PlayerController : MonoBehaviour
         return isGrounded;
     }
 
-    private void PlayAnimation(string animacao)
+    private void PlaySmartAnimation(string animacao)
     {
         if (!animationLocked)
         {
-            if (animacao == "player_attack")
-            {
-                animationLocked = true;
-            }
-
             if (emotion == "SAD")
                 animationController.PlayAnimation(animacao + "_sad");
             else
                 animationController.PlayAnimation(animacao);
 
-            Invoke("UnlockAnimation", 0.5f);
+            if (animacao == "player_attack")
+            {
+                animationLocked = true;
+                Invoke("UnlockAnimation", 0.250f);
+            }
         }
     }
 
@@ -163,7 +168,7 @@ public class PlayerController : MonoBehaviour
         if (hp < 1)
         {
             isAlive = false;
-            PlayAnimation("player_death");
+            PlaySmartAnimation("player_death");
             Invoke("ResetGame", 3);
         }
     }
@@ -179,7 +184,8 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void UnlockAnimation(){
+    private void UnlockAnimation()
+    {
         animationLocked = false;
     }
 }

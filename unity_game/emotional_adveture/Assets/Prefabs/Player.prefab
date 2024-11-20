@@ -177,6 +177,7 @@ MonoBehaviour:
   jumpForce: 12
   canJump: 1
   lastTimeOnGround: 0
+  isAlive: 1
 --- !u!95 &7473971638715054172
 Animator:
   serializedVersion: 5

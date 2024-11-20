@@ -45,5 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neutral: {fileID: 8300000, guid: 656c6e02b7c1c8d4ab42686d182ba605, type: 3}
+  happy: {fileID: 8300000, guid: 44f5ba890284a6d478d98de3d982f22b, type: 3}
   sad: {fileID: 8300000, guid: 8f015a4637216944c9ee8530f4548501, type: 3}
   angry: {fileID: 8300000, guid: 2bb44101ae8f70b4893228b8af1a9f7b, type: 3}
+  fear: {fileID: 8300000, guid: 9a3d6ede1614da346b1a521e7d20294b, type: 3}
