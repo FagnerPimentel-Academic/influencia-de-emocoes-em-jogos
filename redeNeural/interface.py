@@ -62,10 +62,13 @@ class CustomTable(ctk.CTkFrame):
 
 
 def atualizar_indicador(emotion,count,accuracy_avg,resultTime,longest_time):
-    emotions = { "happy": photo_felicidades_img, "fear": photo_medo_img, "neutro": photo_neutro_img, "sad": photo_tristeza_img, "angry": photo_raiva_img}  
+    emotions = { "happy": photo_felicidades_img, "fear": photo_medo_img, "neutral": photo_neutro_img, "sad": photo_tristeza_img, "angry": photo_raiva_img}  
     ctk.CTkLabel(frame_indicador, image=emotions[emotion], text="",bg_color="#121212").place(x=190, y=75)
-    if emotion == 'neutro':
-         ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=225)
+    if emotion == 'neutral':
+        ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=225)
+        ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=300)
+        ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=325)
+        ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=350)
     elif count >= 0.7*predicts:
         ctk.CTkLabel(frame_indicador, text="Taxa de acerto:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=250)
         ctk.CTkLabel(frame_indicador, text=f"{int((count/predicts)*100)}%     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=225)
@@ -76,15 +79,15 @@ def atualizar_indicador(emotion,count,accuracy_avg,resultTime,longest_time):
         ctk.CTkLabel(frame_indicador, text="Taxa de acerto:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=250)
         ctk.CTkLabel(frame_indicador, text=f"{int((count/predicts)*100)}%     ", text_color="red",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=225)
     
-    if emotion != 'neutro':
+    if emotion != 'neutral':
         ctk.CTkLabel(frame_indicador, text="Média de acurácia:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=300)
-        ctk.CTkLabel(frame_indicador, text=f"{accuracy_avg}%", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=300)
+        ctk.CTkLabel(frame_indicador, text=f"{round(accuracy_avg)}%", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=300)
         
         ctk.CTkLabel(frame_indicador, text="Média de tempo:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=325)
-        ctk.CTkLabel(frame_indicador, text=f"{resultTime} ms", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=325)
+        ctk.CTkLabel(frame_indicador, text=f"{round(resultTime)} ms", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=325)
 
         ctk.CTkLabel(frame_indicador, text="Maior tempo:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=350)
-        ctk.CTkLabel(frame_indicador, text=f"{longest_time} ms", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=350)
+        ctk.CTkLabel(frame_indicador, text=f"{round(longest_time)} ms", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=350)
 
 def send_emotion(emotion:str,count,accuracy_avg,resultTime,longest_time):
     print(count)
@@ -147,11 +150,11 @@ def on_click(emotion):
                 opposite = emotion_pairs[emotion]
                 count,accurace = process_emotion(emotion, opposite, response, count, resultTime)
                 accuracy_avg += accurace
-            elif emotion == "neutro":
-                data.append((emotion, hora_formatada, 100.0, emotion))
+            elif emotion == "neutral":
+                data.append((emotion, 0, 100.0, emotion))
 
-        if emotion == "neutro":
-            send_emotion(emotion, predicts)
+        if emotion == "neutral":
+            send_emotion(emotion, predicts,100,0,0)
         elif count >= predicts/2:
             send_emotion(emotion, count,(accuracy_avg/predicts),time_avg/predicts,longest_time)
         else:
@@ -234,14 +237,14 @@ elif emotion2 == "angry":
 
 ctk.CTkButton(frame_emocoes, image=btt_img, text="",bg_color="#121212", fg_color="#121212", command=on_click(emotion1)).place(x=50, y=70)
 ctk.CTkButton(frame_emocoes, image=btt_img2, text="",bg_color="#121212", fg_color="#121212", command=on_click(emotion2)).place(x=200, y=70)
-ctk.CTkButton(frame_emocoes, image=photo_neutro_img, text="",bg_color="#121212", fg_color="#121212", command=on_click("neutro")).place(x=350, y=70)
+ctk.CTkButton(frame_emocoes, image=photo_neutro_img, text="",bg_color="#121212", fg_color="#121212", command=on_click("neutral")).place(x=350, y=70)
 ctk.CTkButton(frame_emocoes, image=photo_opcoes_img, text="",bg_color="#121212", fg_color="#121212").place(x=500, y=70)
 
 frame_indicador = ctk.CTkFrame(root, fg_color='#1a1a1a', width=800, height=600)
 frame_indicador.place(x=750, y=20)
 ctk.CTkLabel(frame_indicador, image=photo_ondas_img, text="", text_color="white", font=("Helvetica", 14)).pack(anchor="w", padx=10, pady=5)
 ctk.CTkLabel(frame_indicador, text="Emoção enviada", text_color="white", fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=20)
-atualizar_indicador("neutro",predicts,100,0,0)
+atualizar_indicador("neutral",predicts,100,0,0)
 
 frame_lancamentos = ctk.CTkFrame(root, fg_color='#1a1a1a', width=690, height=500)
 frame_lancamentos.place(x=20, y=300)
