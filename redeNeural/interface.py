@@ -6,6 +6,7 @@ import json
 import os
 from time import sleep
 from redeNeural import realizarDeteccao
+import time
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
@@ -16,6 +17,11 @@ root.geometry("1280x650")
 root.configure(bg='#1e1e2d')
 
 data = []
+
+emotion1 = "fear"
+emotion2 = "angry"
+
+predicts = 30
 
 import customtkinter as ctk
 
@@ -30,7 +36,7 @@ class CustomTable(ctk.CTkFrame):
         for col in columns:
             label = ctk.CTkLabel(header_frame, text=col, font=("Helvetica", 12, "bold"),
                                  text_color="white", fg_color="#2e2e2e",bg_color="#2e2e2e")
-            label.pack(side="left", padx=1, pady=1, ipadx=56, ipady=5, expand=True)
+            label.pack(side="left", padx=1, pady=1, ipadx=43, ipady=5, expand=True)
 
         self.data_frame = ctk.CTkScrollableFrame(self, fg_color="#121212")
         self.data_frame.pack(fill="both", expand=True)
@@ -40,83 +46,121 @@ class CustomTable(ctk.CTkFrame):
     def update_data(self, data):
         for widget in self.data_frame.winfo_children():
             widget.destroy()
-
         for row_data in data:
             row_frame = ctk.CTkFrame(self.data_frame, fg_color="#121212")
             row_frame.pack(fill="x", pady=2)
 
             for index, item in enumerate(row_data):
-                if index == 3:
+                if index == 2:
                     text_color = "green" if int(item)>=70 else "red"
                 else:
                     text_color = "white"
 
                 cell = ctk.CTkLabel(row_frame, text=item, font=("Helvetica", 12, "bold"),
                                     text_color=text_color, fg_color="#121212")
-                cell.pack(side="left", padx=1, ipadx=10, ipady=5, expand=True)
+                cell.pack(side="left", padx=1, ipadx=1, ipady=5, expand=True)
 
-def atualizar_indicador(emocao,count):
+
+def atualizar_indicador(emotion,count,accuracy_avg,resultTime,longest_time):
     emotions = { "happy": photo_felicidades_img, "fear": photo_medo_img, "neutro": photo_neutro_img, "sad": photo_tristeza_img, "angry": photo_raiva_img}  
-    ctk.CTkLabel(frame_indicador, image=emotions[emocao], text="",bg_color="#121212").place(x=190, y=110)
-    if count >= 7:
-        ctk.CTkLabel(frame_indicador, text=f"{count}0%     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=275)
-    elif count >=5 and count < 7:
-        ctk.CTkLabel(frame_indicador, text=f"{count}0%     ", text_color="yellow",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=275)
+    ctk.CTkLabel(frame_indicador, image=emotions[emotion], text="",bg_color="#121212").place(x=190, y=75)
+    if emotion == 'neutro':
+         ctk.CTkLabel(frame_indicador, text=f"                     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=40, y=225)
+    elif count >= 0.7*predicts:
+        ctk.CTkLabel(frame_indicador, text="Taxa de acerto:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=250)
+        ctk.CTkLabel(frame_indicador, text=f"{int((count/predicts)*100)}%     ", text_color="green",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=225)
+    elif count >=0.5*predicts and count < 0.7*predicts:
+        ctk.CTkLabel(frame_indicador, text="Taxa de acerto:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=250)
+        ctk.CTkLabel(frame_indicador, text=f"{int((count/predicts)*100)}%    ", text_color="yellow",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=225)
     else:
-        ctk.CTkLabel(frame_indicador, text=f"{count}0%     ", text_color="red",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=275)
+        ctk.CTkLabel(frame_indicador, text="Taxa de acerto:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=250)
+        ctk.CTkLabel(frame_indicador, text=f"{int((count/predicts)*100)}%     ", text_color="red",bg_color="#121212",fg_color="#121212", font=("Poppins", 70, "bold")).place(x=190, y=225)
+    
+    if emotion != 'neutro':
+        ctk.CTkLabel(frame_indicador, text="Média de acurácia:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=300)
+        ctk.CTkLabel(frame_indicador, text=f"{accuracy_avg}%", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=300)
         
-def send_emotion(emotion,count):
-    atualizar_indicador(emotion,count)
-    # json_data = json.dumps(emotions)
+        ctk.CTkLabel(frame_indicador, text="Média de tempo:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=325)
+        ctk.CTkLabel(frame_indicador, text=f"{resultTime} ms", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=325)
 
+        ctk.CTkLabel(frame_indicador, text="Maior tempo:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=350)
+        ctk.CTkLabel(frame_indicador, text=f"{longest_time} ms", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=190, y=350)
+
+def send_emotion(emotion:str,count,accuracy_avg,resultTime,longest_time):
+    print(count)
+    atualizar_indicador(emotion,count,accuracy_avg,resultTime,longest_time)
+    data = {"emotion":emotion.upper()}
+    json_data = json.dumps(data)
     # HOST = '127.0.0.1'
     # PORT = 65432
 
-    # sleep(3)
-    # envios = 40
-    # for i in range(envios):
-    #     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    #         s.connect((HOST, PORT))
-    #         s.sendall(json_data.encode('utf-8'))
-    #     print(f"Dados enviados {i+1}/{envios}")
-    #     sleep(0.1)
+    # sleep(1)
+   
+    # with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    #     s.connect((HOST, PORT))
+    #     s.sendall(json_data.encode('utf-8'))
+    
 
 def atualizar_table():
     table.update_data(data)
 
 
+def process_emotion(emotion, opposite, response, count, resultTime):
+    if float(response[emotion]) > float(response[opposite]):
+        count += 1
+        detected_emotion = emotion
+    else:
+        detected_emotion = opposite
+    
+
+    data.append((emotion, resultTime, response[emotion] * 100, detected_emotion))
+    return count,(response[emotion]*100)
+
 def on_click(emotion):
     def inner_on_click():
         now = datetime.datetime.now()
-        data_formatada = now.strftime("%d/%m/%Y")
         hora_formatada = now.strftime("%H:%M:%S")
         count = 0
-        
-        for i in range(10):
+
+        emotion_pairs = {
+            "sad": "happy",
+            "happy": "sad",
+            "fear": "angry",
+            "angry": "fear"
+        }
+
+
+        accuracy_avg = 0
+        time_avg = 0
+        longest_time = 0
+        for _ in range(predicts):
+            start = time.time()
             response = realizarDeteccao(emotion)
-            if emotion == "happy":
-                if float(response[emotion]) > float(response['sad']):
-                    count += 1
-                data.append((emotion, data_formatada, hora_formatada, response[emotion]*100))
-            elif emotion == "fear":
-                if response[emotion] > response["angry"]:
-                    count += 1
-                data.append((emotion, data_formatada, hora_formatada, response[emotion]*100))
+            end = time.time()
+            resultTime = round((end-start)*1000)
+            time_avg += resultTime
+
+            if resultTime > longest_time:
+                longest_time = resultTime
+
+            if emotion in emotion_pairs:
+                opposite = emotion_pairs[emotion]
+                count,accurace = process_emotion(emotion, opposite, response, count, resultTime)
+                accuracy_avg += accurace
+            elif emotion == "neutro":
+                data.append((emotion, hora_formatada, 100.0, emotion))
 
         if emotion == "neutro":
-            send_emotion(emotion,10)
-        elif emotion == "happy" and count >= 5:
-            send_emotion(emotion,count)
-        elif emotion == "fear" and count >= 5:
-            send_emotion(emotion,count)
-        elif emotion == "happy" and count < 5:
-            send_emotion("sad",(10-count))
-        elif emotion == "fear" and count < 5:
-            send_emotion("angry",(10-count))
+            send_emotion(emotion, predicts)
+        elif count >= predicts/2:
+            send_emotion(emotion, count,(accuracy_avg/predicts),time_avg/predicts,longest_time)
+        else:
+            opposite = emotion_pairs.get(emotion, None)
+            if opposite:
+                send_emotion(opposite, predicts - count,(accuracy_avg/predicts),time_avg/predicts,longest_time)
 
         atualizar_table()
 
-    
     return inner_on_click
 
 
@@ -151,7 +195,7 @@ medo_img = Image.open(os.path.join(base_path, "medo.png"))
 photo_medo_img = ImageTk.PhotoImage(medo_img)
 
 # Raiva
-raiva_img = Image.open(os.path.join(base_path, "tristeza.png"))  # Verificar se este caminho está correto
+raiva_img = Image.open(os.path.join(base_path, "raiva.png")) 
 photo_raiva_img = ImageTk.PhotoImage(raiva_img)
 
 # Neutro
@@ -170,8 +214,26 @@ ctk.CTkLabel(frame_emocoes, image=photo_emocoes_img, text="", fg_color='#1a1a1a'
 
 ctk.CTkLabel(frame_emocoes, text="Envio de Emoções", text_color="white", fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=20)
 
-ctk.CTkButton(frame_emocoes, image=photo_felicidades_img, text="",bg_color="#121212", fg_color="#121212", command=on_click("happy")).place(x=50, y=70)
-ctk.CTkButton(frame_emocoes, image=photo_medo_img, text="",bg_color="#121212", fg_color="#121212", command=on_click("fear")).place(x=200, y=70)
+if emotion1 == "sad":
+    btt_img = photo_tristeza_img
+elif emotion1 == "happy":
+    btt_img = photo_felicidades_img
+elif emotion1 == "fear":
+    btt_img = photo_medo_img
+elif emotion1 == "angry":
+    btt_img = photo_raiva_img
+
+if emotion2 == "sad":
+    btt_img2 = photo_tristeza_img
+elif emotion2 == "happy":
+    btt_img2 = photo_felicidades_img
+elif emotion2 == "fear":
+    btt_img2 = photo_medo_img
+elif emotion2 == "angry":
+    btt_img2 = photo_raiva_img
+
+ctk.CTkButton(frame_emocoes, image=btt_img, text="",bg_color="#121212", fg_color="#121212", command=on_click(emotion1)).place(x=50, y=70)
+ctk.CTkButton(frame_emocoes, image=btt_img2, text="",bg_color="#121212", fg_color="#121212", command=on_click(emotion2)).place(x=200, y=70)
 ctk.CTkButton(frame_emocoes, image=photo_neutro_img, text="",bg_color="#121212", fg_color="#121212", command=on_click("neutro")).place(x=350, y=70)
 ctk.CTkButton(frame_emocoes, image=photo_opcoes_img, text="",bg_color="#121212", fg_color="#121212").place(x=500, y=70)
 
@@ -179,8 +241,7 @@ frame_indicador = ctk.CTkFrame(root, fg_color='#1a1a1a', width=800, height=600)
 frame_indicador.place(x=750, y=20)
 ctk.CTkLabel(frame_indicador, image=photo_ondas_img, text="", text_color="white", font=("Helvetica", 14)).pack(anchor="w", padx=10, pady=5)
 ctk.CTkLabel(frame_indicador, text="Emoção enviada", text_color="white", fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=20)
-ctk.CTkLabel(frame_indicador, text="Taxa de acerto:", text_color="white",bg_color="#121212",fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=300)
-atualizar_indicador("neutro",10)
+atualizar_indicador("neutro",predicts,100,0,0)
 
 frame_lancamentos = ctk.CTkFrame(root, fg_color='#1a1a1a', width=690, height=500)
 frame_lancamentos.place(x=20, y=300)
@@ -189,7 +250,7 @@ ctk.CTkLabel(frame_lancamentos, image=photo_recentes_img, text="", fg_color="#1a
 
 ctk.CTkLabel(frame_lancamentos, text="Lançados Recentemente", text_color="white", fg_color="#121212", font=("Poppins", 14, "bold")).place(x=40, y=40)
 
-columns = ["Emoção", "Data", "Hora", "Status %"]
+columns = ["Enviado", "Tempo (ms)", "Acurácia (%)", "Identificado"]
 table = CustomTable(frame_lancamentos, columns, data, width=2000, height=800)
 table.place(x=40, y=70)
 
