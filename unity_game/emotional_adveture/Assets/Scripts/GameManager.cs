@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [HideInInspector]
+    public GameObject player, colorFilter, audioManager;
+    
     public static GameManager instance;
-    private GameObject player, colorFilter, audioManager;
     private EmotionManager emotionManager;
 
     EmotionManager.EmotionData emotionData;
@@ -16,12 +18,12 @@ public class GameManager : MonoBehaviour
     void Awake(){
         if(instance == null)
         instance = this;
+        player = GameObject.Find("Player");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
         colorFilter = GameObject.Find("Color Filter");
         audioManager = GameObject.Find("Audio Manager");
         emotionManager = GetComponent<EmotionManager>();
@@ -49,5 +51,9 @@ public class GameManager : MonoBehaviour
             colorFilter.GetComponent<ColorFilterController>().ApplyEmotion(emotion);
             audioManager.GetComponent<AudioManager>().ApplyEmotion(emotion);
         }
+    }
+
+    public void AttackPlayer(int damage){
+        player.GetComponent<PlayerController>().Hurt(damage);
     }
 }

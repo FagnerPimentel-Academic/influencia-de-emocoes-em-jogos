@@ -31,7 +31,7 @@ public class EmotionManager : MonoBehaviour
             server = new TcpListener(IPAddress.Parse("127.0.0.1"), 65432);
             server.Start();
             isRunning = true;
-            Debug.Log("Aguardando emoções...");
+            Debug.Log("Servidor iniciado. Aguardando emoções...");
 
             // Inicia a escuta em uma thread separada para não travar o jogo
             server.BeginAcceptTcpClient(AcceptClient, server);
@@ -81,5 +81,12 @@ public class EmotionManager : MonoBehaviour
     {
         isRunning = false;
         server.Stop();
+    }
+
+    public void CloseServer()
+    {
+        isRunning = false;
+        server.Stop();
+        Debug.Log("Servidor encerrado.");
     }
 }
