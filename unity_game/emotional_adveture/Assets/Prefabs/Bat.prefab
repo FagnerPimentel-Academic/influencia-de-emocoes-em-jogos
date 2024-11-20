@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 1556484445896442625}
   - component: {fileID: 8397710550637920105}
   - component: {fileID: 7053100454727495240}
+  - component: {fileID: 8033520718564354191}
   m_Layer: 0
   m_Name: Bat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,4 +185,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followDistance: 5
+  minDistance: 0.5
   speed: 3
+--- !u!114 &8033520718564354191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575713822108978505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d086a0c708b334e89ef7ce083bf30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 3
+  deathFXPrefab: {fileID: 8684060432682742525, guid: 8d9115436b90ff64fa76933df46968f1, type: 3}

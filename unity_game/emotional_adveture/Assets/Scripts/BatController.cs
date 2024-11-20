@@ -13,6 +13,7 @@ public class BatController : MonoBehaviour
     private bool attackRange = false;
 
     public float followDistance = 5f;
+    public float minDistance = 0.5f;
     public float speed = 3f;
 
     // Start is called before the first frame update
@@ -39,7 +40,8 @@ public class BatController : MonoBehaviour
         Vector3 playerHead = player.transform.position;
         playerHead.y += 0.8f;
 
-        nextToPlayer = Vector3.Distance(playerHead, transform.position) < followDistance;
+        float distance = Vector3.Distance(playerHead, transform.position);
+        nextToPlayer =  distance < followDistance && distance > minDistance;
 
         if (nextToPlayer)
         {

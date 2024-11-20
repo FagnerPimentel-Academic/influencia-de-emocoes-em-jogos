@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     void Awake(){
         if(instance == null)
         instance = this;
+        
         player = GameObject.Find("Player");
     }
 
@@ -56,4 +57,5 @@ public class GameManager : MonoBehaviour
     public void AttackPlayer(int damage){
         player.GetComponent<PlayerController>().Hurt(damage);
     }
+    
 }

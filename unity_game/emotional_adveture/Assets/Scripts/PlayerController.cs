@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private int hp = 10;
     public bool isAlive = true;
     private bool animationLocked = false;
+    private List<GameObject> enemyTarget = new List<GameObject>();
 
     Dictionary<string, Color> emotionPerColor = new Dictionary<string, Color>();
 
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             lastTimeOnGround = Time.time;
         }
+
+        
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -66,6 +70,23 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Enemy"))
+        {
+            enemyTarget.Add(col.gameObject);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Enemy"))
+        {
+            enemyTarget.Remove(col.gameObject);
         }
     }
 
@@ -81,6 +102,13 @@ public class PlayerController : MonoBehaviour
         {
             PlaySmartAnimation("player_attack");
 
+            if (enemyTarget.Count > 0)
+            {
+                foreach (GameObject enemy in enemyTarget)
+                {
+                    enemy.gameObject.GetComponent<EnemyController>().Hurt(1);
+                }
+            }
         }
     }
 
