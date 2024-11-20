@@ -3,7 +3,7 @@ import json
 from time import sleep
 
 # Dados a serem enviados
-data = {"emotion": 'NEUTRAL'}
+data = {"emotion": 'SAD'}
 
 # Converter para JSON
 json_data = json.dumps(data)

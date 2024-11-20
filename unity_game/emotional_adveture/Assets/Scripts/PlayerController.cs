@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         emotionPerColor.Add("HAPPY", Color.green);
         emotionPerColor.Add("SAD", Color.grey);
         emotionPerColor.Add("ANGRY", Color.red);
-        emotionPerColor.Add("SCARY", Color.blue);
+        emotionPerColor.Add("FEAR", Color.blue);
     }
 
     // Update is called once per frame
