@@ -94,14 +94,14 @@ def send_emotion(emotion:str,count,accuracy_avg,resultTime,longest_time):
     atualizar_indicador(emotion,count,accuracy_avg,resultTime,longest_time)
     data = {"emotion":emotion.upper()}
     json_data = json.dumps(data)
-    # HOST = '127.0.0.1'
-    # PORT = 65432
+    HOST = '127.0.0.1'
+    PORT = 65432
 
-    # sleep(1)
+    sleep(1)
    
-    # with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    #     s.connect((HOST, PORT))
-    #     s.sendall(json_data.encode('utf-8'))
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((HOST, PORT))
+        s.sendall(json_data.encode('utf-8'))
     
 
 def atualizar_table():

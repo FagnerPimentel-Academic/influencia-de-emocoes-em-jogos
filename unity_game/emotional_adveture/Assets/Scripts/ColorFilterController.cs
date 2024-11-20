@@ -18,7 +18,7 @@ public class ColorFilterController : MonoBehaviour
         emotionPerColor.Add("HAPPY", new Color(0f, 1f, 0f, alpha));     // Verde
         emotionPerColor.Add("SAD", new Color(0.6f, 0.6f, 0.6f, alpha)); // Cinza
         emotionPerColor.Add("ANGRY", new Color(1f, 0f, 0f, alpha));     // Vermelho
-        emotionPerColor.Add("SCARY", new Color(0f, 0f, 1f, alpha));     // Azul
+        emotionPerColor.Add("FEAR", new Color(0f, 0f, 1f, alpha));     // Azul
     }
 
     // Update is called once per frame

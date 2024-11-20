@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource audioSource0, audioSource1;
     private int playingAudioSource = 0;
     public static AudioManager instance;
-    public AudioClip neutral, happy, sad, angry, scary;
+    public AudioClip neutral, happy, sad, angry, fear;
     Dictionary <string, AudioClip> emotionAudioClip = new Dictionary<string, AudioClip>();
 
 
@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
         emotionAudioClip.Add("HAPPY", happy);
         emotionAudioClip.Add("SAD", sad);
         emotionAudioClip.Add("ANGRY", angry);
-        emotionAudioClip.Add("SCARY", scary);
+        emotionAudioClip.Add("FEAR", fear);
 
         audioSource0 = gameObject.AddComponent<AudioSource>();
         audioSource1 = gameObject.AddComponent<AudioSource>();
