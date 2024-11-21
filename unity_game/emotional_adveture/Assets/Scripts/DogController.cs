@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DogController : MonoBehaviour
 {
@@ -6,20 +7,26 @@ public class DogController : MonoBehaviour
     public float followDistance = 2f; // Distância mínima para seguir
     public float followSpeed = 5f; // Velocidade de movimento
     public float jumpForce = 12f; // Força do pulo
+    public int hp = 10;
+    public bool isAlive = true;
 
     private Rigidbody2D rb2d;
     private AnimationController animationController;
+    private SpriteRenderer spriteRenderer;
+    private GameManager gameManager;
     private bool isGrounded;
     private bool hasObstacle;
 
     void Awake()
     {
+        gameManager = GameManager.instance;
         player = GameObject.Find("Player");
         animationController = GetComponent<AnimationController>();
     }
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         Physics2D.IgnoreCollision(
             player.transform.GetComponent<Collider2D>(),
@@ -29,13 +36,14 @@ public class DogController : MonoBehaviour
 
     void Update()
     {
-        FollowPlayer();
+        if(isAlive && !hasObstacle)
+            FollowPlayer();
     }
 
     void FollowPlayer()
     {
         float stopDistance = 0.06f;
-        float distanceFromPlayer = Vector2.Distance(transform.position, player.transform.position);
+        float distanceFromPlayer = Mathf.Abs(transform.position.x - player.transform.position.x);
         if (distanceFromPlayer + stopDistance > followDistance)
         {
             // Movimenta o cachorro em direção ao jogador
@@ -54,14 +62,6 @@ public class DogController : MonoBehaviour
                 transform.localScale = new Vector3(-1, 1, 1); // Olhando para a esquerda
             }
 
-            // Se o cachorro encontrar obstáculos (como diferença de altura), ele pula
-            if (isGrounded && Mathf.Abs(rb2d.velocity.y) < 0.01f)
-            {
-                if (ShouldJump())
-                {
-                    Jump();
-                }
-            }
         }
         else
         {
@@ -75,12 +75,20 @@ public class DogController : MonoBehaviour
                 animationController.PlayAnimation("dog_idle");
             }
         }
+            // Se o cachorro encontrar obstáculos (como diferença de altura), ele pula
+            if (isGrounded && Mathf.Abs(rb2d.velocity.y) < 0.01f)
+            {
+                if (ShouldJump())
+                {
+                    Jump();
+                }
+            }
     }
 
     bool ShouldJump()
     {
         // Salta se o jogador estiver acima do cachorro
-        return player.transform.position.y > transform.position.y + 0.5f;
+        return player.transform.position.y > transform.position.y + 0.5f && player.transform.position.y < transform.position.y + 3f;
     }
 
     void Jump()
@@ -110,11 +118,43 @@ public class DogController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         hasObstacle = col.tag == "Ground";
+        hasObstacle = col.name == "Werewolf";
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "Ground")
             hasObstacle = false;
+
+        if (col.name == "Werewolf")
+            hasObstacle = false;
     }
+
+
+    public void Hurt(int damage)
+    {
+        hp -= damage;
+
+        spriteRenderer.color = Color.red;
+        Invoke("ResetColor", 0.1f);
+
+        if (hp < 1)
+        {
+            isAlive = false;
+            animationController.PlayAnimation("dog_death");
+            Invoke("ResetGame", 10);
+        }
+    }
+
+    private void ResetColor()
+    {
+        spriteRenderer.color = Color.white;
+    }
+
+    private void ResetGame()
+    {
+        gameManager.GetComponent<EmotionManager>().CloseServer();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }

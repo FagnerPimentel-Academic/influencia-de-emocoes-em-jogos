@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
             }
             Attack();
         }
+
+        if(Input.GetKeyDown(KeyCode.R))
+            ResetGame();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

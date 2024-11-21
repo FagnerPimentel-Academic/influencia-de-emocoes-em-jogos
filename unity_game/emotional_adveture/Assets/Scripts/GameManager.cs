@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [HideInInspector]
-    public GameObject player, colorFilter, audioManager;
+    public GameObject player, dog, colorFilter, audioManager;
     
     public static GameManager instance;
     private EmotionManager emotionManager;
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         
         player = GameObject.Find("Player");
+        dog = GameObject.Find("Dog");
     }
 
     // Start is called before the first frame update
@@ -56,6 +57,10 @@ public class GameManager : MonoBehaviour
 
     public void AttackPlayer(int damage){
         player.GetComponent<PlayerController>().Hurt(damage);
+    }
+
+    public void AttackDog(int damage){
+        dog.GetComponent<DogController>().Hurt(damage);
     }
     
 }
