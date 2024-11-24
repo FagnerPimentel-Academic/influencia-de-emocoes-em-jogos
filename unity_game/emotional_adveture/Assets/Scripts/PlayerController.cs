@@ -24,10 +24,12 @@ public class PlayerController : MonoBehaviour
     private AnimationController animationController;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb2d;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = AudioManager.instance;
         gameManager = GameManager.instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
         if (attackPressed)
         {
             PlaySmartAnimation("player_attack");
+            audioManager.PlayPlayerSwordFX();
 
             if (enemyTarget.Count > 0)
             {

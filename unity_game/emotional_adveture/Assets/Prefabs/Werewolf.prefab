@@ -207,5 +207,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followDistance: 5
-  minDistance: 1
+  minDistance: 1.6
   speed: 3
