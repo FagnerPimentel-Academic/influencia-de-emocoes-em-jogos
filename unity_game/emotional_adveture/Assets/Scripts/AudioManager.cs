@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private AudioSource audioSource0, audioSource1;
+    private AudioSource audioSource0, audioSource1, audioSourceFX;
     private int playingAudioSource = 0;
     public static AudioManager instance;
-    public AudioClip neutral, happy, sad, angry, fear;
+    public AudioClip neutral, happy, sad, angry, fear, swordFX;
+    public AudioClip[] dogHurtFX;
     Dictionary <string, AudioClip> emotionAudioClip = new Dictionary<string, AudioClip>();
 
 
@@ -28,6 +29,7 @@ public class AudioManager : MonoBehaviour
 
         audioSource0 = gameObject.AddComponent<AudioSource>();
         audioSource1 = gameObject.AddComponent<AudioSource>();
+        audioSourceFX = gameObject.AddComponent<AudioSource>();
 
         SwapTrack(neutral);
     }
@@ -36,6 +38,16 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayDogHurtFX(){
+        audioSourceFX.clip = dogHurtFX[Random.Range(0, dogHurtFX.Length)];
+        audioSourceFX.Play();
+    }
+
+    public void PlayPlayerSwordFX(){
+        audioSourceFX.clip = swordFX;
+        audioSourceFX.Play();
     }
 
     public void ApplyEmotion(string emotion){

@@ -20571,10 +20571,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3630439247997341178, guid: e038fd4d33c255e47b93eb2e617536bb, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4642955723464814090, guid: e038fd4d33c255e47b93eb2e617536bb, type: 3}
       propertyPath: m_Name
       value: Color Filter
@@ -20638,7 +20634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3830439740987046578, guid: 26ab8c5b3dc41f04ea704c6b89e12122, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.5
+      value: -9.3
       objectReference: {fileID: 0}
     - target: {fileID: 3830439740987046578, guid: 26ab8c5b3dc41f04ea704c6b89e12122, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20842,7 +20838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6175681030382071664, guid: 10ed4d70a510a5a4da2d15565ede7bc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.652
+      value: -15.14
       objectReference: {fileID: 0}
     - target: {fileID: 6175681030382071664, guid: 10ed4d70a510a5a4da2d15565ede7bc8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20936,6 +20932,10 @@ PrefabInstance:
     - target: {fileID: 2165679959468461422, guid: 8f210d4eed9bd0f41bd837d2c3b6738b, type: 3}
       propertyPath: m_Name
       value: Werewolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081051922341051634, guid: 8f210d4eed9bd0f41bd837d2c3b6738b, type: 3}
+      propertyPath: minDistance
+      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

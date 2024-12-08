@@ -14,18 +14,20 @@ public class DogController : MonoBehaviour
     private AnimationController animationController;
     private SpriteRenderer spriteRenderer;
     private GameManager gameManager;
+    private AudioManager audioManager;
     private bool isGrounded;
     private bool hasObstacle;
 
     void Awake()
     {
-        gameManager = GameManager.instance;
-        player = GameObject.Find("Player");
-        animationController = GetComponent<AnimationController>();
     }
 
     void Start()
     {
+        player = GameObject.Find("Player");
+        animationController = GetComponent<AnimationController>();
+        gameManager = GameManager.instance;
+        audioManager = AudioManager.instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         Physics2D.IgnoreCollision(
@@ -36,8 +38,14 @@ public class DogController : MonoBehaviour
 
     void Update()
     {
-        if(isAlive && !hasObstacle)
+        if (isAlive && !hasObstacle)
+        {
             FollowPlayer();
+        }
+        else
+        {
+            rb2d.velocity = new Vector2(0, 0);
+        }
     }
 
     void FollowPlayer()
@@ -61,7 +69,6 @@ public class DogController : MonoBehaviour
             {
                 transform.localScale = new Vector3(-1, 1, 1); // Olhando para a esquerda
             }
-
         }
         else
         {
@@ -75,20 +82,21 @@ public class DogController : MonoBehaviour
                 animationController.PlayAnimation("dog_idle");
             }
         }
-            // Se o cachorro encontrar obstáculos (como diferença de altura), ele pula
-            if (isGrounded && Mathf.Abs(rb2d.velocity.y) < 0.01f)
+        // Se o cachorro encontrar obstáculos (como diferença de altura), ele pula
+        if (isGrounded && Mathf.Abs(rb2d.velocity.y) < 0.01f)
+        {
+            if (ShouldJump())
             {
-                if (ShouldJump())
-                {
-                    Jump();
-                }
+                Jump();
             }
+        }
     }
 
     bool ShouldJump()
     {
         // Salta se o jogador estiver acima do cachorro
-        return player.transform.position.y > transform.position.y + 0.5f && player.transform.position.y < transform.position.y + 3f;
+        return player.transform.position.y > transform.position.y + 0.5f
+            && player.transform.position.y < transform.position.y + 3f;
     }
 
     void Jump()
@@ -119,6 +127,10 @@ public class DogController : MonoBehaviour
     {
         hasObstacle = col.tag == "Ground";
         hasObstacle = col.name == "Werewolf";
+
+        if(col.name == "Werewolf"){
+            animationController.PlayAnimation("dog_idle");
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -130,9 +142,10 @@ public class DogController : MonoBehaviour
             hasObstacle = false;
     }
 
-
     public void Hurt(int damage)
     {
+        audioManager.PlayDogHurtFX();
+
         hp -= damage;
 
         spriteRenderer.color = Color.red;
@@ -156,5 +169,4 @@ public class DogController : MonoBehaviour
         gameManager.GetComponent<EmotionManager>().CloseServer();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }

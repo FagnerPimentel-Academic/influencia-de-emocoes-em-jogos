@@ -49,3 +49,8 @@ MonoBehaviour:
   sad: {fileID: 8300000, guid: 8f015a4637216944c9ee8530f4548501, type: 3}
   angry: {fileID: 8300000, guid: 2bb44101ae8f70b4893228b8af1a9f7b, type: 3}
   fear: {fileID: 8300000, guid: 9a3d6ede1614da346b1a521e7d20294b, type: 3}
+  swordFX: {fileID: 8300000, guid: 1b89a2cc95c7edc42a40f572dca20143, type: 3}
+  dogHurtFX:
+  - {fileID: 8300000, guid: d3f488223dcd41849be74bfae1a978c4, type: 3}
+  - {fileID: 8300000, guid: 8604703063e4f7e40b6bca17161c01cd, type: 3}
+  - {fileID: 8300000, guid: 66d581f75ae88e54699830d2597d32a7, type: 3}
